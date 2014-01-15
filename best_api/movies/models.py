@@ -20,6 +20,9 @@ class Movie(models.Model):
         return self.title
 
     def get_movie_metadata(self):
+        """
+        Gets the movie metadata from the OMDb API (http://www.omdbapi.com/)
+        """
         movie = omdb.title(self.title, tomatoes=True)
         if movie:
             print movie
@@ -38,3 +41,9 @@ class Movie(models.Model):
                     ContentFile(poster_data.content),
                 )
             self.save()
+
+    def imdb_link(self):
+        """
+        Returns the link to the IMDB movie page based on the IDMB ID from the database
+        """
+        return "http://www.imdb.com/title/{0}/reference".format(self.imdb_id)

@@ -21,16 +21,20 @@ class Movie(models.Model):
 
     def get_movie_metadata(self):
         movie = omdb.title(self.title, tomatoes=True)
-        self.year = movie.year
-        self.genre = movie.genre
-        self.imdb_rating = movie.imdb_rating
-        self.imdb_id = movie.imdb_id
-        self.runtime = movie.runtime.split(" ")[0]
-        self.plot = movie.plot
-        poster_data = requests.get(movie.poster)
-        file_extension = os.path.splitext(movie.poster)[1]
-        self.poster.save(
-            "{0}.{1}".format(slugify(self.title), file_extension),
-            ContentFile(poster_data.content)
-        )
-        self.save()
+        if movie:
+            print movie
+            self.year = movie.year[:4]
+            self.genre = movie.genre
+            self.imdb_rating = movie.imdb_rating
+            self.imdb_id = movie.imdb_id
+            if movie.runtime != "N/A":
+                self.runtime = movie.runtime.split(" ")[0]
+            self.plot = movie.plot
+            if "http" in movie.poster:
+                poster_data = requests.get(movie.poster)
+                file_extension = os.path.splitext(movie.poster)[1]
+                self.poster.save(
+                    slugify(self.title) + file_extension,
+                    ContentFile(poster_data.content),
+                )
+            self.save()

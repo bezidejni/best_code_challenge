@@ -14,7 +14,7 @@ class Movie(models.Model):
     imdb_id = models.CharField(max_length=15, blank=True)
     runtime = models.IntegerField(null=True, blank=True)
     plot = models.TextField(blank=True)
-    poster = models.ImageField(upload_to='posters', blank=True)
+    poster = models.ImageField(upload_to='posters', blank=True, max_length=200)
 
     def __unicode__(self):
         return self.title

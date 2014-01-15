@@ -1,4 +1,7 @@
 Django==1.6.1
 Pillow==2.3.0
 South==0.8.4
+omdb==0.1.0
+psycopg2==2.5.2
+requests==2.2.0
 wsgiref==0.1.2

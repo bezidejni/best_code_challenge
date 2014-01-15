@@ -21,5 +21,5 @@ def normalize_movie_name(title):
     title = title.strip()
     if ", " in title:
         title = title.split(", ")
-        title = title[1] + " " + title[1]
+        title = title[1] + " " + title[0]
     return title

@@ -1,5 +1,4 @@
 import os
-from django.conf import settings
 from django.core.files.base import ContentFile
 from django.db import models
 from django.template.defaultfilters import slugify

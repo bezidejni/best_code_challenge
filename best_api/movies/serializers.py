@@ -3,7 +3,7 @@ from .models import Movie
 
 
 class MovieSerializer(serializers.HyperlinkedModelSerializer):
-    poster = serializers.Field(source='poster.url')
+    poster = serializers.Field(source='poster_url')
 
     class Meta:
         model = Movie

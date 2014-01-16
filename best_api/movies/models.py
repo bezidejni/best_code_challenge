@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 from django.core.files.base import ContentFile
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -41,6 +42,11 @@ class Movie(models.Model):
                     ContentFile(poster_data.content),
                 )
             self.save()
+
+    def poster_url(self):
+        if not self.poster:
+            return None
+        return self.poster.url
 
     def imdb_link(self):
         """

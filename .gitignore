@@ -1,2 +1,5 @@
 *.pyc
 *.swp
+.idea
+best_api/media
+*.csv

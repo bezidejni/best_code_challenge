@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 from .models import Movie
 from .serializers import MovieSerializer
 
@@ -9,6 +9,11 @@ class MovieList(ListView):
     queryset = Movie.objects.all()
     paginate_by = 10
     context_object_name = "movies"
+
+
+class MovieDetail(DetailView):
+    model = Movie
+    template_name = "movie_detail.html"
 
 
 class MovieViewSet(viewsets.ReadOnlyModelViewSet):

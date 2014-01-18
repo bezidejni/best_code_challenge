@@ -4,7 +4,8 @@ from .base import *
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '*.jukic.me',
+    '.jukic.me',
+    '.jukic.me.',
 ]
 
 DATABASES = {

@@ -1,5 +1,6 @@
 import os
 from django.core.files.base import ContentFile
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 import omdb
@@ -18,6 +19,9 @@ class Movie(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('movie-detail', kwargs={'pk': self.id})
 
     def get_movie_metadata(self):
         """

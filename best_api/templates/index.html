@@ -27,7 +27,7 @@
             <h3>New movies:</h3>
             <ul>
             {% for movie in movies %}
-                <li>{{ movie.title }}</li>
+                <li><a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a></li>
             {% endfor %}
             </ul>
         {% endblock content %}

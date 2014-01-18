@@ -1,19 +1,35 @@
 {% extends "index.html" %}
+
 {% block content %}
 <h3>Movie detail</h3>
-<dl class="dl-horizontal">
-    <img src="{{ movie.poster_url }}" alt="{{ movie.title }} poster image" class="img-thumbnail">
-    <dt>Title</dt>
-    <dd>{{ movie.title }}</dd>
-    <dt>Genre</dt>
-    <dd>{{ movie.genre }}</dd>
-    <dt>Runtime</dt>
-    <dd>{{ movie.runtime }} min</dd>
-    <dt>IMDb rating</dt>
-    <dd>{{ movie.imdb_rating }}</dd>
-    <dt>Year</dt>
-    <dd>{{ movie.year }}</dd>
-    <dt>Plot</dt>
-    <dd>{{ movie.plot }}</dd>
-</dl>
+<div class="row">
+    <div class="col-md-2">
+        <img src="{{ movie.poster_url }}" alt="{{ movie.title }} poster image" class="img-thumbnail">
+    </div>
+    <div class="col-md-7">
+        <dl class="dl-horizontal">
+            <dt>Title</dt>
+            <dd>{{ movie.title }}</dd>
+            <dt>Genre</dt>
+            <dd>{{ movie.genre }}</dd>
+            <dt>Runtime</dt>
+            <dd>{{ movie.runtime }} min</dd>
+            <dt>IMDb rating</dt>
+            <dd>{{ movie.imdb_rating }}</dd>
+            <dt>Year</dt>
+            <dd>{{ movie.year }}</dd>
+            <dt>Plot</dt>
+            <dd>{{ movie.plot }}</dd>
+        </dl>
+    </div>
+    <div class="col-md-3">
+        <h5>Recommendations</h5>
+        <ul>
+            <li>The Godfather</li>
+            <li>Raging bull</li>
+            <li>Toy story</li>
+        </ul>
+    </div>
+</div>
+
 {% endblock %}

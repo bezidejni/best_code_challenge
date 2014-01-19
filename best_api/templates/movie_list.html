@@ -19,9 +19,17 @@
                     <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
                 </div>
                 <div class="btn-toolbar pull-left">
+                    <select class="select-block" value="X-Men" name="herolist" style="display: none;">
+            <option value="0">Choose hero</option>
+            <option value="1">Spider Man</option>
+            <option value="2" selected="selected">Wolverine</option>
+            <option value="3">Captain America</option>
+            <option value="X-Men">X-Men</option>
+            <option value="Crocodile">Crocodile</option>
+          </select>
                     <div class="btn-group">
-                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Grid view" class="btn btn-primary" ng-class="{ active: !listView }" ng-click="listView = false"><span class="glyphicon glyphicon-arrow-down"></span></a>
-                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="List view" class="btn btn-primary" ng-class="{ active: listView }" ng-click="listView = true"><span class="fui-list"></span></a>
+                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Sort ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Sort descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true"><span class="glyphicon glyphicon-arrow-down"></span></a>
                     </div>
                 </div>
             </div>

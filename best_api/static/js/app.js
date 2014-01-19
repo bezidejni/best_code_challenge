@@ -121,6 +121,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
 	$scope.clearSearch = function() {
 		$scope.searchMovies = '';
+		$scope.pages = [];
+		$scope.currentPage = 1;
+		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+		$scope.gettingMovies = true;
 		var requestData = {page_size: 240, ordering: '-year'};
 		$scope.getMovies(requestData);
 	}

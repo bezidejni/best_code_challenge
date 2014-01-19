@@ -77,7 +77,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
             $scope.pages = $scope.paginate($scope.movies, 24);
 
             $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-            console.log($scope.pages);
+            $scope.totalNumOfMovies = data.count;
 		});
 
 	$scope.addTagFilter = function(tag) {
@@ -85,7 +85,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	}
 
 	$scope.removeTagFilter = function(index) {
-		console.log(index);
 		$scope.tagFilters.splice(index, 1);
 	}
 

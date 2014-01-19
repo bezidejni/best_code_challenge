@@ -116,7 +116,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	};
 
 	$scope.clearSearch = function() {
-		$scope.searchMovie = '';
+		$scope.searchMovies = '';
 	}
 
 	$scope.paginate = function(data, pageSize) {

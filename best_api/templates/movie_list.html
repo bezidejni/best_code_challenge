@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="row movies" ng-hide="gettingMovies" ng-cloak>
+    <div class="row movies" ng-show="pages.length > 0" ng-cloak>
         <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in currentPageView | tagsFilter:tagFilters ">
             <div class="movie-poster">
                 <img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-responsive" />
@@ -39,8 +39,11 @@
             </div>
         </div>
     </div>
-    <div class="row text-center" ng-show="gettingMovies" ng-cloak>
+    <div class="row text-center" ng-show="!pages[currentPage - 1] && gettingMovies" ng-cloak>
         <img src="/static/images/spinner.gif" width="50"/>
+    </div>
+    <div class="row text-center" ng-show="!pages.length && !gettingMovies">
+        No matching movies found.
     </div>
 
     <div class="row" ng-cloak>
@@ -48,7 +51,7 @@
             Showing {{ (24 * (currentPage - 1)) + 1; }} to {{ (24 * (currentPage - 1)) + pages[currentPage - 1].length }} of {{ movies.count }} movies
             <span ng-show="searchMovies && !gettingMovies">(filtered from {{ totalNumOfMovies }} total movies)</span>
         </div>
-        <pagination class="pull-right clear-margin" total-items="totalNumOfMovies" items-per-page="24" on-select-page="pageChanged(page)" max-size="5" page="currentPage"></pagination>
+        <pagination class="pull-right clear-margin" total-items="movies.count" items-per-page="24" max-size="5" page="currentPage"></pagination>
     </div>
     {% endverbatim %}
 {% endblock %}

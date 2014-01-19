@@ -31,8 +31,8 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 		movie.tags = movie.genre.split(',');
 	});
 
-	//Movies.getList()
-	//	.success(function(data) {
-	//	});
+	Movies.getList()
+		.success(function(data) {
+		});
 
 }]);

@@ -1,6 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import filters, viewsets
 from django.views.generic import DetailView, ListView
-from .models import Movie
+from .models import Movie, MovieFilter
 from .serializers import MovieSerializer
 
 
@@ -17,8 +17,10 @@ class MovieDetail(DetailView):
 
 
 class MovieViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Movie.objects.all()
-    serializer_class = MovieSerializer
+    filter_backend = filters.DjangoFilterBackend
+    filter_class = MovieFilter
+    max_paginate_by = 100
     paginate_by_param = 'page_size'
     paginate_by = 10
-    max_paginate_by = 100
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer

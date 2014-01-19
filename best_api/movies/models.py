@@ -10,7 +10,7 @@ import requests
 class Movie(models.Model):
     title = models.CharField(max_length=200)
     year = models.IntegerField(null=True, blank=True)
-    genre = models.CharField(max_length=40)
+    genre = models.CharField(max_length=100, blank=True)
     imdb_rating = models.CharField(max_length=3, blank=True)
     imdb_id = models.CharField(max_length=15, blank=True)
     runtime = models.IntegerField(null=True, blank=True)

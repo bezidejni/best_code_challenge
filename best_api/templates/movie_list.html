@@ -7,7 +7,7 @@
             <div class="tagsinput">
                 <div class="tag" ng-repeat="tag in tagFilters">
                     <span>{{tag}}</span>
-                    <a class="tagsinput-remove-link"></a>
+                    <a class="tagsinput-remove-link" ng-click="removeTagFilter(tag)"></a>
                 </div>
             </div>
         </div>

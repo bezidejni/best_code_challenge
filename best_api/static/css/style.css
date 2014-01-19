@@ -58,6 +58,10 @@ header p {
   margin-left: 15px;
 }
 
+.display .btn-toolbar .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+  border-radius: 0 4px 4px 0 !important;
+}
+
 .display .btn-toolbar .glyphicon {
   font-size: 16px;
   margin: -2px 1px 2px;

@@ -49,6 +49,7 @@ mevies.filter('tagsFilter', function() {
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
 	$scope.currentPage = 1;
+    $scope.gettingMovies = true;
 	$scope.listView = false;
 	$scope.tagFilters = [];
 
@@ -66,11 +67,15 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	var requestData = {page_size: 120};
 	Movies.getList(requestData)
 		.success(function(data) {
-			$scope.movies = data.results;
-			$scope.numOfMovies = data.count;
+            $scope.gettingMovies = false;
+            $scope.movies = data.results;
 			angular.forEach($scope.movies, function(movie, index){
 				movie.tags = movie.genre.split(',');
 			});
+            $scope.nextPageUrl = data.next;
+            $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
+
+            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 		});
 
 	$scope.addTagFilter = function(tag) {
@@ -114,8 +119,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
                     $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
 
                     $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-
-                    $scope.noOfPages = parseInt(data.count / 24, 10);
                 });
         }, 1500);
     };

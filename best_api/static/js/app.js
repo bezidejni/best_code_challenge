@@ -55,7 +55,7 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 		});
 
 	$scope.addTagFilter = function(tag) {
-		$scope.tagFilters.push(tag.toLowerCase());
+		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) $scope.tagFilters.push(tag.toLowerCase());
 	}
 
 	$scope.removeTagFilter = function(index) {

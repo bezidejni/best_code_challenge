@@ -1,4 +1,4 @@
-var mevies = angular.module('mevies', []);
+var mevies = angular.module('mevies', ['ui.bootstrap']);
 
 mevies.config(function($provide, $windowProvider, $httpProvider) {
     var apiBaseUrl = 'http://movies.jukic.me/api/';

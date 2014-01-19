@@ -39,6 +39,7 @@
             </div>
         </div>
         {{pages.length}}
+        <pagination total-items="100" page="currentPage"></pagination>
         <pagination num-pages="pages.length" page="currentPage" max-size="5"></pagination>
         <pagination class="pull-right clear-margin" num-pages="pages.length" on-select-page="pageChanged(page)" current-page="currentPage" max-size="maxSize"></pagination>
     </div>

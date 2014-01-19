@@ -90,10 +90,15 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
 		// TODO Don't make canceler global.
 		if (typeof canceler !== 'undefined') { canceler.resolve(); }
-
 		canceler = $q.defer();
 
+		$scope.pages = [];
+		$scope.currentPage = 1;
+		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+
 		$timeout.cancel($scope.stopSearch);
+		$scope.gettingMovies = true;
+
 		var requestData = {
 			title: $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
@@ -102,10 +107,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		};
 
 		$scope.stopSearch = $timeout(function() {
-			$scope.pages = [];
-			$scope.currentPage = 1;
-			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-			$scope.gettingMovies = true;
 			Movies.getList(requestData, canceler.promise).
 				success(function(data) {
 					$scope.gettingMovies = false;
@@ -126,7 +127,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		$scope.currentPage = 1;
 		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 		$scope.gettingMovies = true;
-		var requestData = {page_size: 240, ordering: '-year'};
+		var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};
 		$scope.getMovies(requestData);
 	}
 

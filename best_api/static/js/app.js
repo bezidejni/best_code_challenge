@@ -82,7 +82,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		$scope.tagFilters.splice(index, 1);
 	}
 
-	$scope.searchMovies = function() {
+	$scope.search = function() {
         // When the search text field is changed this function is fired. We don't want to fire off
         // an ajax request with every change. Rather, let's be a little smart about this and fire
         // off a request if there hasn't been a change within 1.5 seconds.

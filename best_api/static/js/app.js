@@ -60,13 +60,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	Movies.getList(requestData)
 		.success(function(data) {
 			$scope.gettingMovies = false;
-			$scope.movies = data.results;
-			angular.forEach($scope.movies, function(movie, index){
+			$scope.movies = data;
+			angular.forEach($scope.movies.results, function(movie, index){
 				movie.tags = movie.genre.split(',');
 			});
 			$scope.nextPageUrl = data.next;
-			$scope.pages = $scope.paginate($scope.movies, 24);
-
+			$scope.pages = $scope.paginate($scope.movies.results, 24);
 			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 			$scope.totalNumOfMovies = data.count;
 		});
@@ -106,10 +105,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			Movies.getList(requestData, canceler.promise).
 				success(function(data) {
 					$scope.gettingMovies = false;
-					$scope.movies = data.results;
+					$scope.movies = data;
+					angular.forEach($scope.movies.results, function(movie, index){
+						movie.tags = movie.genre.split(',');
+					});
 					$scope.nextPageUrl = data.next;
-					$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
-
+					$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies.results, 24));
 					$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 				});
 		}, 1500);
@@ -141,13 +142,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 					Movies.getNextPage($scope.nextPageUrl).
 						success(function(data) {
 							$scope.gettingMovies = false;
-							$scope.movies = data.results;
-							angular.forEach($scope.movies, function(movie, index){
+							$scope.movies = data;
+							angular.forEach($scope.movies.results, function(movie, index){
 								movie.tags = movie.genre.split(',');
 							});
 							$scope.nextPageUrl = data.next;
-
-							$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
+							$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies.results, 24));
 							$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 						});
 				}

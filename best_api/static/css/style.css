@@ -1,3 +1,5 @@
+[ng\:cloak], [ng-cloak], .ng-cloak { display: none !important; }
+
 header {
   color: #ffffff;
 }
@@ -12,11 +14,26 @@ header p {
 
 .display {
   margin-top: 15px;
+  height: 41px;
 }
 
 .display .tagsinput {
     border: none;
-    height: auto;
+  height: 41px;
+}
+
+.display .tagsinput h6 {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.display .tagsinput .tag {
+  padding: 6px 19px 8px;
+}
+
+.display .tagsinput .tag:hover {
+  padding-right: 26px;
+  padding-left: 12px;
 }
 
 .display .glyphicon {

@@ -2,9 +2,10 @@
 
 {% block content %}
     {% verbatim %}
-    <div class="row display">
+    <div class="row display" ng-cloak>
         <div class="col-sm-6">
-            <div class="tagsinput">
+            <div class="tagsinput" ng-if="tagFilters.length > 0">
+                <h6>Tags:</h6>
                 <div class="tag" ng-repeat="tag in tagFilters" ng-click="removeTagFilter($index)">
                     <span>{{tag + '  '}}</span>
                     <a class="tagsinput-remove-link"></a>
@@ -23,8 +24,8 @@
         </div>
     </div>
 
-    <div class="row movies">
-        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in movies">
+    <div class="row movies" ng-cloak>
+        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in movies | tagsFilter:tagFilters">
             <div class="movie-poster">
                 <img ng-src="{{movie.poster}}" class="img-responsive" />
             </div>

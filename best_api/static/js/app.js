@@ -48,7 +48,7 @@ mevies.filter('tagsFilter', function() {
 
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
-	$scope.currentPage = 0;
+	$scope.currentPage = 1;
     $scope.gettingMovies = true;
 	$scope.listView = false;
 	$scope.tagFilters = [];
@@ -113,8 +113,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
     };
 
     $scope.$watch('currentPage', function(val) {
-        if ($scope.currentPage != 0) {
-
             $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 
             if ($scope.pages.length - $scope.currentPage <= 5) {
@@ -152,7 +150,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 						});
                 }
             }
-        }
     });
 
 }]);

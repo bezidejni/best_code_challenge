@@ -1,49 +1,94 @@
 {% load compress static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Flat UI Free</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+	<meta charset="utf-8">
+	<title>Mevies | Movies for Me</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% compress css %}
-        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
-        <link href="{%  static  'css/flat-ui.css'%}" rel="stylesheet">
-    {% endcompress %}
+	{% compress css %}
+		<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+		<link href="{%  static  'css/flat-ui.css'%}" rel="stylesheet">
+		<link href="{%  static  'css/style.css'%}" rel="stylesheet">
+	{% endcompress %}
 
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}">
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico'%}">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="{% static 'js/html5shiv.js' %}"></script>
-      <script src="{% static 'js/respond.min.js' %}"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-        <h1>MovieSite</h1>
-        {% block content %}
-            <h3>New movies:</h3>
-            <ul>
-            {% for movie in movies %}
-                <li><a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a></li>
-            {% endfor %}
-            </ul>
-        {% endblock content %}
-    </div>
-    <!-- /.container -->
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	<!--[if lt IE 9]>
+	  <script src="{% static 'js/html5shiv.js' %}"></script>
+	  <script src="{% static 'js/respond.min.js' %}"></script>
+	<![endif]-->
+</head>
+<body ng-app="mevies" ng-controller="MeviesCtrl">
+	<header class="palette-turquoise">
+		<div class="container">
+			<div class="row">
+				<h1><span class="highlight">Me</span>vies</h1>
+				<p>Movies for Me</p>
+			</div>
+		</div>
+	</header>
 
-    {% compress js %}
-        <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
-        <script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
-        <script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap-select.js' %}"></script>
-        <script src="{% static 'js/bootstrap-switch.js' %}"></script>
-        <script src="{% static 'js/flatui-checkbox.js' %}"></script>
-        <script src="{% static 'js/flatui-radio.js' %}"></script>
-        <script src="{% static 'js/jquery.tagsinput.js' %}"></script>
-        <script src="{% static 'js/jquery.placeholder.js' %}"></script>
-    {% endcompress %}
-  </body>
+	<div class="container">
+		<div class="row display">
+			<div class="pull-right">
+			  <div class="btn-toolbar">
+				<div class="btn-group">
+				  <a href="#fakelink" class="btn btn-primary" ng-class="{ active: !listView }" ng-click="listView = false"><span class="glyphicon glyphicon-th"></span></a>
+				  <a href="#fakelink" class="btn btn-primary" ng-class="{ active: listView }" ng-click="listView = true"><span class="fui-list"></span></a>
+				</div>
+			  </div> <!-- /toolbar -->
+			</div>
+		</div>
+
+		<div class="row movies">
+			<div class="col-sm-3 col-md-2 movie" ng-repeat="movie in movies">
+				<div class="movie-poster">
+					<img ng-src="{{movie.poster}}" class="img-responsive" />
+				</div>
+				<h4 class="movie-title">{{movie.title}} ({{movie.year}})</h4>
+				<div class="tags" ng-if="movie.tags.length != 0">
+					<div class="tag" ng-repeat="tag in movie.tags">{{tag.toLowerCase()}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	{% compress js %}
+		<script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+		<script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+		<script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap-select.js' %}"></script>
+		<script src="{% static 'js/bootstrap-switch.js' %}"></script>
+		<script src="{% static 'js/flatui-checkbox.js' %}"></script>
+		<script src="{% static 'js/flatui-radio.js' %}"></script>
+		<script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+		<script src="{% static 'js/jquery.placeholder.js' %}"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+		<script src="{% static 'js/app.js' %}"></script>
+		<script>
+			function getCookie(name) {
+				var cookieValue = null;
+				console.log(document.cookie);
+				if (document.cookie && document.cookie != '') {
+					var cookies = document.cookie.split(';');
+					for (var i = 0; i < cookies.length; i++) {
+						var cookie = jQuery.trim(cookies[i]);
+						// Does this cookie string begin with the name we want?
+						if (cookie.substring(0, name.length + 1) == (name + '=')) {
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return cookieValue;
+			}
+			window.csrftoken = getCookie('csrftoken');
+		</script>
+	{% endcompress %}
+</body>
 </html>

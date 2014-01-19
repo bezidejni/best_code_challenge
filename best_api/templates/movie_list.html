@@ -5,9 +5,9 @@
     <div class="row display">
         <div class="col-sm-6">
             <div class="tagsinput">
-                <div class="tag" ng-repeat="tag in tagFilters">
+                <div class="tag" ng-repeat="tag in tagFilters" ng-click="removeTagFilter($index)">
                     <span>{{tag}}  </span>
-                    <a class="tagsinput-remove-link" ng-click="removeTagFilter(tag)"></a>
+                    <a class="tagsinput-remove-link"></a>
                 </div>
             </div>
         </div>

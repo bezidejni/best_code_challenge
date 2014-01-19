@@ -22,9 +22,9 @@
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by<span class="caret"></span></button>
                     <span class="dropdown-arrow"></span>
                     <ul class="dropdown-menu">
-                        <li><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>
-                        <li><a href="#fakelink" ng-click="predicate = 'year'; sort();">Year</a></li>
-                        <li><a href="#fakelink" ng-click="predicate = 'rating'; sort();">Rating</a></li>
+                        <li ng-class="{selected: predicate == 'title'}"><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>
+                        <li ng-class="{selected: predicate == 'year'}"><a href="#fakelink" ng-click="predicate = 'year'; sort();">Year</a></li>
+                        <li ng-class="{selected: predicate == 'rating'}"><a href="#fakelink" ng-click="predicate = 'rating'; sort();">Rating</a></li>
                     </ul>
                 </div>
                 <div class="btn-toolbar pull-left">

@@ -49,6 +49,11 @@ header p {
     cursor: pointer;
 }
 
+.display .dropdown {
+    float: left;
+    margin-left: 15px;
+}
+
 .display .btn-toolbar {
   margin-left: 15px;
 }

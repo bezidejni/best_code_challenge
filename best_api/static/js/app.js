@@ -11,10 +11,11 @@ mevies.config(function($provide, $windowProvider, $httpProvider) {
 
 mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL) {
 	return {
-		getList: function(params) {
+		getList: function(params, promise) {
 			return $http({
 				method: 'GET',
 				url: API_BASE_URL + 'movies/',
+                timeout: promise,
 				params: params
 			});
 		},
@@ -56,8 +57,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.predicate = 'year'
 	$scope.reverse = true;
 
-	$scope.getMovies = function(requestData) {
-		Movies.getList(requestData)
+	$scope.getMovies = function(requestData, promise) {
+		Movies.getList(requestData, promise)
 			.success(function(data) {
 				$scope.gettingMovies = false;
 				$scope.movies = data;
@@ -128,6 +129,28 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		var requestData = {page_size: 240, ordering: '-year'};
 		$scope.getMovies(requestData);
 	}
+
+	$scope.sort = function() {
+        $scope.pages = [];
+        $scope.currentPage = 1;
+        $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+
+        // TODO Don't make canceler global.
+        if (typeof canceler !== 'undefined') { canceler.resolve(); }
+
+        canceler = $q.defer();
+
+        $scope.gettingMovies = true;
+
+        var params = {
+            search: $scope.searchMovies,
+            ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+            page_size: 240,
+            page: 1
+        };
+
+        $scope.getMovies(params, canceler.promise);
+    };
 
 	$scope.paginate = function(data, pageSize) {
 		var newArr = [];

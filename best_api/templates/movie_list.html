@@ -18,19 +18,19 @@
                     <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
                     <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
                 </div>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Dropdown<span class="caret"></span></button>
-  <span class="dropdown-arrow"></span>
-  <ul class="dropdown-menu">
-    <li><a href="#fakelink">Sub Menu Element</a></li>
-    <li><a href="#fakelink">Sub Menu Element</a></li>
-    <li><a href="#fakelink">Sub Menu Element</a></li>
-  </u>
-</div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by<span class="caret"></span></button>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>
+                        <li><a href="#fakelink" ng-click="predicate = 'year'; sort();">Year</a></li>
+                        <li><a href="#fakelink" ng-click="predicate = 'rating'; sort();">Rating</a></li>
+                    </ul>
+                </div>
                 <div class="btn-toolbar pull-left">
                     <div class="btn-group">
-                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Sort ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false"><span class="glyphicon glyphicon-arrow-up"></span></a>
-                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Sort descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
                     </div>
                 </div>
             </div>

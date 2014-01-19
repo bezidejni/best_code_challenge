@@ -1,8 +1,12 @@
 import os
+import re
 from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
+from apiclient.discovery import build
+import django_filters
+import imdb
 import omdb
 import requests
 
@@ -23,13 +27,12 @@ class Movie(models.Model):
     def get_absolute_url(self):
         return reverse('movie-detail', kwargs={'pk': self.id})
 
-    def get_movie_metadata(self):
+    def get_movie_metadata_from_omdb(self):
         """
         Gets the movie metadata from the OMDb API (http://www.omdbapi.com/)
         """
         movie = omdb.title(self.title, tomatoes=True)
         if movie:
-            print movie
             self.year = movie.year[:4]
             self.genre = movie.genre
             self.imdb_rating = movie.imdb_rating
@@ -46,6 +49,49 @@ class Movie(models.Model):
                 )
             self.save()
 
+    def get_movie_metadata_from_imdb(self):
+        """
+        Gets the movie metadata from the IMDb (http://www.imdb.com)
+        """
+        api = imdb.IMDb()
+        movies = api.search_movie(self.title, results=1)
+        if movies:
+            movie = api.get_movie(movies[0].movieID)
+            self.year = movie.get('year')
+            self.genre = ", ".join(movie.get('genres', []))
+            self.imdb_rating = movie.get("rating", "")
+            self.imdb_id = "tt" + movie.movieID
+            runtimes = movie.get("runtimes")
+            if runtimes:
+                # get only digits from string (example UK:112min -> 112)
+                self.runtime = int(re.findall('\d+', runtimes[0])[0])
+            self.plot = movie.get('plot outline', "")
+            poster_url = movie.get('cover url')
+            if poster_url:
+                poster_data = requests.get(poster_url)
+                file_extension = os.path.splitext(poster_url)[1]
+                self.poster.save(
+                    slugify(self.title) + file_extension,
+                    ContentFile(poster_data.content),
+                )
+            self.save()
+
+    def get_youtube_trailer_video_id(self):
+        """
+        Uses the Youtube API to try to find a trailer for the movie and
+        returns the youtube video ID
+        API Documentation:
+        https://developers.google.com/youtube/v3/docs/
+        https://developers.google.com/api-client-library/python/apis/youtube/v3
+        """
+        youtube = build("youtube", "v3", developerKey="AIzaSyD8d-NQ8wjfW23ZjQPU2nAwZ0PTMF-gom8")
+        response = youtube.search().list(
+            q="{0} trailer".format(self.title),
+            type="video",
+            videoDuration="short",
+            part="id,snippet"
+        ).execute()
+
     def poster_url(self):
         if not self.poster:
             return None
@@ -56,3 +102,12 @@ class Movie(models.Model):
         Returns the link to the IMDB movie page based on the IDMB ID from the database
         """
         return "http://www.imdb.com/title/{0}/reference".format(self.imdb_id)
+
+
+class MovieFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(name="title", lookup_type="icontains")
+    genre = django_filters.CharFilter(name="genre", lookup_type="icontains")
+
+    class Meta:
+        model = Movie
+        fields = ['title', 'genre', 'year']

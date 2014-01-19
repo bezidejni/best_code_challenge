@@ -77,6 +77,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
             $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
 
             $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+            console.log(pages);
 		});
 
 	$scope.addTagFilter = function(tag) {

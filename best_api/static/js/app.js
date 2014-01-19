@@ -1,12 +1,12 @@
 var mevies = angular.module('mevies', ['ui.bootstrap']);
 
 mevies.config(function($provide, $windowProvider, $httpProvider) {
-    var apiBaseUrl = 'http://movies.jukic.me/api/';
+	var apiBaseUrl = 'http://movies.jukic.me/api/';
 
-    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-    $provide.value('API_BASE_URL', apiBaseUrl);
-    $provide.value('CSRF_TOKEN', $windowProvider.$get().csrfToken);
+	$provide.value('API_BASE_URL', apiBaseUrl);
+	$provide.value('CSRF_TOKEN', $windowProvider.$get().csrfToken);
 });
 
 mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL) {
@@ -49,10 +49,25 @@ mevies.filter('tagsFilter', function() {
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
 	$scope.currentPage = 1;
-    $scope.gettingMovies = true;
+	$scope.gettingMovies = true;
 	$scope.listView = false;
 	$scope.tagFilters = [];
-    $scope.pages = [];
+	$scope.pages = [];
+
+	var requestData = {page_size: 120};
+	Movies.getList(requestData)
+		.success(function(data) {
+			$scope.gettingMovies = false;
+			$scope.movies = data.results;
+			angular.forEach($scope.movies, function(movie, index){
+				movie.tags = movie.genre.split(',');
+			});
+			$scope.nextPageUrl = data.next;
+			$scope.pages = $scope.paginate($scope.movies, 24);
+
+			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+			$scope.totalNumOfMovies = data.count;
+		});
 
 	$scope.addTagFilter = function(tag) {
 		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) $scope.tagFilters.push(tag.toLowerCase());
@@ -63,93 +78,78 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	}
 
 	$scope.search = function() {
-        // When the search text field is changed this function is fired. We don't want to fire off
-        // an ajax request with every change. Rather, let's be a little smart about this and fire
-        // off a request if there hasn't been a change within 1.5 seconds.
-        $scope.pages = [];
+		// When the search text field is changed this function is fired. We don't want to fire off
+		// an ajax request with every change. Rather, let's be a little smart about this and fire
+		// off a request if there hasn't been a change within 1.5 seconds.
+		$scope.pages = [];
 
-        $scope.currentPage = 1;
-        $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+		$scope.currentPage = 1;
+		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 
-        // TODO Don't make canceler global.
-        if (typeof canceler !== 'undefined') { canceler.resolve(); }
+		// TODO Don't make canceler global.
+		if (typeof canceler !== 'undefined') { canceler.resolve(); }
 
-        canceler = $q.defer();
+		canceler = $q.defer();
 
-        $timeout.cancel($scope.stopSearch);
-        $scope.gettingMovies = true;
-        var requestData = {
-            search: $scope.searchMovies,
-            //ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
-            page_size: 120,
-            page: 1
-        };
+		$timeout.cancel($scope.stopSearch);
+		$scope.gettingMovies = true;
+		var requestData = {
+			search: $scope.searchMovies,
+			//ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			page_size: 120,
+			page: 1
+		};
 
-        $scope.stopSearch = $timeout(function() {
-            Movies.getList(requestData, canceler.promise).
-                success(function(data) {
-                    $scope.gettingMovies = false;
-                    $scope.movies = data.results;
-                    $scope.nextPageUrl = data.next;
-                    $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
+		$scope.stopSearch = $timeout(function() {
+			Movies.getList(requestData, canceler.promise).
+				success(function(data) {
+					$scope.gettingMovies = false;
+					$scope.movies = data.results;
+					$scope.nextPageUrl = data.next;
+					$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
 
-                    $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-                });
-        }, 1500);
-    };
+					$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+				});
+		}, 1500);
+	};
 
-    $scope.paginate = function(data, pageSize) {
-        var newArr = [];
-        var pages = [];
+	$scope.paginate = function(data, pageSize) {
+		var newArr = [];
+		var pages = [];
 
-        // Copy the contents of data into newArr, breaking the reference.
-        for (var i in data) { newArr.push(data[i]); }
+		// Copy the contents of data into newArr, breaking the reference.
+		for (var i in data) { newArr.push(data[i]); }
 
-        while (newArr.length > 0) {
-            pages.push(newArr.splice(0, pageSize));
-        }
+		while (newArr.length > 0) {
+			pages.push(newArr.splice(0, pageSize));
+		}
 
-        return pages;
-    };
+		return pages;
+	};
 
-    $scope.$watch('currentPage', function(val) {
-            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+	$scope.$watch('currentPage', function(val) {
+			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 
-            if ($scope.pages.length - $scope.currentPage <= 5) {
-                if ($scope.gettingMovies || $scope.nextPageUrl === null) { return; }
+			if ($scope.pages.length - $scope.currentPage <= 5) {
+				if ($scope.gettingMovies || $scope.nextPageUrl === null) { return; }
 
-                $scope.gettingMovies = true;
+				$scope.gettingMovies = true;
 
-                if ($scope.nextPageUrl) {
-                    Movies.getNextPage($scope.nextPageUrl).
-                        success(function(data) {
-                            $scope.gettingMovies = false;
-                            $scope.movies = data.results;
+				if ($scope.nextPageUrl) {
+					Movies.getNextPage($scope.nextPageUrl).
+						success(function(data) {
+							$scope.gettingMovies = false;
+							$scope.movies = data.results;
 							angular.forEach($scope.movies, function(movie, index){
 								movie.tags = movie.genre.split(',');
 							});
-                            $scope.nextPageUrl = data.next;
+							$scope.nextPageUrl = data.next;
 
-                            $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
-                            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-                        });
-                } else {
-                    var requestData = {page_size: 120};
-					Movies.getList(requestData)
-						.success(function(data) {
-				            $scope.gettingMovies = false;
-				            $scope.movies = data.results;
-							angular.forEach($scope.movies, function(movie, index){
-								movie.tags = movie.genre.split(',');
-							});
-				            $scope.nextPageUrl = data.next;
-				            $scope.pages = $scope.paginate($scope.movies, 24);
-
-				            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-				            $scope.totalNumOfMovies = data.count;
+							$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
+							$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 						});
-                }
-            }
-    });
+				}
+			}
+	});
 
 }]);

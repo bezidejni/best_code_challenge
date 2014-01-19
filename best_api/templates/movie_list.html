@@ -38,6 +38,7 @@
                 <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
             </div>
         </div>
+        {{pages.length}}
         <pagination num-pages="pages.length" page="currentPage" max-size="5"></pagination>
         <pagination class="pull-right clear-margin" num-pages="pages.length" on-select-page="pageChanged(page)" current-page="currentPage" max-size="maxSize"></pagination>
     </div>

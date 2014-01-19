@@ -63,7 +63,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				$scope.gettingMovies = false;
 				$scope.movies = data;
 				angular.forEach($scope.movies.results, function(movie, index){
-					movie.tags = movie.genre.split(',');
+					if(movie.genre !== '') movie.tags = movie.genre.split(',');
 				});
 				$scope.nextPageUrl = data.next;
 				$scope.pages = $scope.paginate($scope.movies.results, 24);
@@ -112,7 +112,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 					$scope.gettingMovies = false;
 					$scope.movies = data;
 					angular.forEach($scope.movies.results, function(movie, index){
-						movie.tags = movie.genre.split(',');
+						if(movie.genre !== '') movie.tags = movie.genre.split(',');
 					});
 					$scope.nextPageUrl = data.next;
 					$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies.results, 24));
@@ -181,7 +181,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 							$scope.gettingMovies = false;
 							$scope.movies = data;
 							angular.forEach($scope.movies.results, function(movie, index){
-								movie.tags = movie.genre.split(',');
+								if(movie.genre !== '') movie.tags = movie.genre.split(',');
 							});
 							$scope.nextPageUrl = data.next;
 							$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies.results, 24));

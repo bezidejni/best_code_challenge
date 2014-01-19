@@ -46,7 +46,7 @@ mevies.filter('tagsFilter', function() {
 	}
 });
 
-mevies.controller('MeviesCtrl', ['$scope', '$q', 'Movies', function ($scope, $q, Movies) {
+mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
 	$scope.currentPage = 1;
 	$scope.listView = false;

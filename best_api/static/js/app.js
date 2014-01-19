@@ -48,37 +48,11 @@ mevies.filter('tagsFilter', function() {
 
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
-	$scope.currentPage = 1;
+	$scope.currentPage = 0;
     $scope.gettingMovies = true;
 	$scope.listView = false;
 	$scope.tagFilters = [];
     $scope.pages = [];
-
-	$scope.getMoreMovies = function(url) {
-		Movies.getNextPage(url)
-			.success(function(data) {
-				var movies = data.results;
-				angular.forEach(movies, function(movie, index){
-					movie.tags = movie.genre.split(',');
-				});
-				$scope.movies.apply.push(movies);
-			});
-	}
-
-	var requestData = {page_size: 120};
-	Movies.getList(requestData)
-		.success(function(data) {
-            $scope.gettingMovies = false;
-            $scope.movies = data.results;
-			angular.forEach($scope.movies, function(movie, index){
-				movie.tags = movie.genre.split(',');
-			});
-            $scope.nextPageUrl = data.next;
-            $scope.pages = $scope.paginate($scope.movies, 24);
-
-            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-            $scope.totalNumOfMovies = data.count;
-		});
 
 	$scope.addTagFilter = function(tag) {
 		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) $scope.tagFilters.push(tag.toLowerCase());
@@ -137,5 +111,48 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
         return pages;
     };
+
+    $scope.$watch('currentPage', function(val) {
+        if ($scope.currentPage != 0) {
+
+            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+
+            if ($scope.pages.length - $scope.currentPage <= 5) {
+                if ($scope.gettingMovies || $scope.nextPageUrl === null) { return; }
+
+                $scope.gettingMovies = true;
+
+                if ($scope.nextPageUrl) {
+                    Movies.getNextPage($scope.nextPageUrl).
+                        success(function(data) {
+                            $scope.gettingMovies = false;
+                            $scope.movies = data.results;
+							angular.forEach($scope.movies, function(movie, index){
+								movie.tags = movie.genre.split(',');
+							});
+                            $scope.nextPageUrl = data.next;
+
+                            $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
+                            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+                        });
+                } else {
+                    var requestData = {page_size: 120};
+					Movies.getList(requestData)
+						.success(function(data) {
+				            $scope.gettingMovies = false;
+				            $scope.movies = data.results;
+							angular.forEach($scope.movies, function(movie, index){
+								movie.tags = movie.genre.split(',');
+							});
+				            $scope.nextPageUrl = data.next;
+				            $scope.pages = $scope.paginate($scope.movies, 24);
+
+				            $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+				            $scope.totalNumOfMovies = data.count;
+						});
+                }
+            }
+        }
+    });
 
 }]);

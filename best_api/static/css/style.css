@@ -103,6 +103,14 @@ h4.movie-title {
   vertical-align: middle;
 }
 
+.pagination a {
+  cursor: pointer;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #1ABC9C;
+  border-color: #1ABC9C;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .movies .movie {
       height: 320px;

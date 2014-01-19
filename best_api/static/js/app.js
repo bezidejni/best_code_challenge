@@ -24,6 +24,7 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 
 	$scope.listView = false;
+	$scope.tagFilters = []
 
 	var requestData = {page_size: 50};
 	Movies.getList(requestData)
@@ -33,5 +34,13 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 				movie.tags = movie.genre.split(',');
 			});
 		});
+
+	$scope.addTagFilter = function(tag) {
+		$scope.tagFilters.push(tag.toLoweCase());
+	}
+
+	$scope.removeTagFilter = function(tag) {
+		$scope.tagFilters.splice($scope.tagFilters.indexOf(tag.toLowerCase()));
+	}
 
 }]);

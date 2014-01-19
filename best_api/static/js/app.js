@@ -52,6 +52,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
     $scope.gettingMovies = true;
 	$scope.listView = false;
 	$scope.tagFilters = [];
+    $scope.pages = [];
 
 	$scope.getMoreMovies = function(url) {
 		Movies.getNextPage(url)

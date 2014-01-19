@@ -115,6 +115,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		}, 1500);
 	};
 
+	$scope.clearSearch = function() {
+		$scope.searchMovie = '';
+	}
+
 	$scope.paginate = function(data, pageSize) {
 		var newArr = [];
 		var pages = [];

@@ -46,6 +46,7 @@ header p {
     position: absolute;
     right: 8px;
     top: 7px;
+    cursor: pointer;
 }
 
 .display .btn-toolbar {

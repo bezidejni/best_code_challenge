@@ -38,7 +38,10 @@
                 <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
             </div>
         </div>
-        {{currentPage}}
+        <div class="pull-left">
+            Showing {{ (24 * (currentPage - 1)) + 1; }} to {{ (24 * (currentPage - 1)) + pages[currentPage - 1].length }} of {{ movies.count }} movies
+            <span ng-show="searchMovies">(filtered from {{ totalNumOfMovies }} total movies)</span>
+        </div>
         <pagination class="pull-right clear-margin" total-items="totalNumOfMovies" items-per-page="24" on-select-page="pageChanged(page)" max-size="5" page="currentPage"></pagination>
     </div>
     {% endverbatim %}

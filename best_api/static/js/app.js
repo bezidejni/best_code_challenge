@@ -82,10 +82,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		// When the search text field is changed this function is fired. We don't want to fire off
 		// an ajax request with every change. Rather, let's be a little smart about this and fire
 		// off a request if there hasn't been a change within 1.5 seconds.
-		$scope.pages = [];
-
-		$scope.currentPage = 1;
-		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 
 		// TODO Don't make canceler global.
 		if (typeof canceler !== 'undefined') { canceler.resolve(); }
@@ -93,7 +89,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		canceler = $q.defer();
 
 		$timeout.cancel($scope.stopSearch);
-		$scope.gettingMovies = true;
 		var requestData = {
 			title: $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
@@ -102,6 +97,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		};
 
 		$scope.stopSearch = $timeout(function() {
+			$scope.pages = [];
+			$scope.currentPage = 1;
+			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+			$scope.gettingMovies = true;
 			Movies.getList(requestData, canceler.promise).
 				success(function(data) {
 					$scope.gettingMovies = false;

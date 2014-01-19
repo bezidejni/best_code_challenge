@@ -16,7 +16,7 @@
             <div class="pull-right">
                 <div class="form-group pull-left">
                     <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
-                    <span class="fui-cross clear-search" ng-if="searchMovies"></span>
+                    <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="searchMovies = ''"></span>
                 </div>
                 <div class="btn-toolbar pull-left">
                     <div class="btn-group">
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="row text-center" ng-show="gettingMovies">
+    <div class="row text-center" ng-show="gettingMovies" ng-cloak>
         <img src="/static/images/spinner.gif" width="50"/>
     </div>
 

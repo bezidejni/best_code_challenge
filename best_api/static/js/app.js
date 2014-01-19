@@ -173,12 +173,9 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			if ($scope.pages.length - $scope.currentPage <= 5) {
 				if ($scope.gettingMovies || $scope.nextPageUrl === null) { return; }
 
-				$scope.gettingMovies = true;
-
 				if ($scope.nextPageUrl) {
 					Movies.getNextPage($scope.nextPageUrl).
 						success(function(data) {
-							$scope.gettingMovies = false;
 							$scope.movies = data;
 							angular.forEach($scope.movies.results, function(movie, index){
 								if(movie.genre !== '') movie.tags = movie.genre.split(',');

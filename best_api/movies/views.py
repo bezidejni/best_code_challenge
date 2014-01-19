@@ -19,3 +19,6 @@ class MovieDetail(DetailView):
 class MovieViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    paginate_by_param = 'page_size'
+    paginate_by = 10
+    max_paginate_by = 100

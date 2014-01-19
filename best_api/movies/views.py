@@ -19,7 +19,6 @@ class MovieDetail(DetailView):
 class MovieViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.DjangoFilterBackend, filters.OrderingFilter]
     filter_class = MovieFilter
-    max_paginate_by = 100
     ordering_fields = ('title', 'year')
     paginate_by_param = 'page_size'
     paginate_by = 10

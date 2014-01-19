@@ -33,6 +33,7 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 
 	Movies.getList()
 		.success(function(data) {
+			console.log(data);
 		});
 
 }]);

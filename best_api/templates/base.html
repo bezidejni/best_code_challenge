@@ -52,9 +52,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
 		<script src="{% static 'js/app.js' %}"></script>
 		<script>
+			$(function() {
+				$('.btn-toolbar a').tooltip();
+			});
+
 			function getCookie(name) {
 				var cookieValue = null;
-				console.log(document.cookie);
 				if (document.cookie && document.cookie != '') {
 					var cookies = document.cookie.split(';');
 					for (var i = 0; i < cookies.length; i++) {

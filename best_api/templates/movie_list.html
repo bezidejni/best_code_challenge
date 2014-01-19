@@ -7,19 +7,22 @@
             <div class="tagsinput" ng-if="tagFilters.length > 0">
                 <h6>Tags:</h6>
                 <div class="tag" ng-repeat="tag in tagFilters" ng-click="removeTagFilter($index)">
-                    <span>{{tag + '  '}}</span>
+                    <span>{{tag}}</span>
                     <a class="tagsinput-remove-link"></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="pull-right">
-              <div class="btn-toolbar">
-                <div class="btn-group">
-                  <a href="#fakelink" class="btn btn-primary" ng-class="{ active: !listView }" ng-click="listView = false"><span class="glyphicon glyphicon-th"></span></a>
-                  <a href="#fakelink" class="btn btn-primary" ng-class="{ active: listView }" ng-click="listView = true"><span class="fui-list"></span></a>
+                <div class="form-group pull-left">
+                    <input class="form-control" type="text" placeholder="Search movies" value="">
                 </div>
-              </div>
+                <div class="btn-toolbar pull-left">
+                    <div class="btn-group">
+                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="Grid view" class="btn btn-primary" ng-class="{ active: !listView }" ng-click="listView = false"><span class="glyphicon glyphicon-th"></span></a>
+                        <a href="#fakelink" data-placement="top" data-toggle="tooltip" data-original-title="List view" class="btn btn-primary" ng-class="{ active: listView }" ng-click="listView = true"><span class="fui-list"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -27,7 +30,7 @@
     <div class="row movies" ng-cloak>
         <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in movies | tagsFilter:tagFilters">
             <div class="movie-poster">
-                <img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-responsive" />
+                <img ng-src="{{movie.poster}}" class="img-responsive" />
             </div>
             <h4 class="movie-title">{{movie.title}} ({{movie.year}})</h4>
             <div class="tags" ng-if="movie.tags.length != 0">

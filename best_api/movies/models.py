@@ -87,7 +87,7 @@ class Movie(models.Model):
         """
         youtube = build("youtube", "v3", developerKey="AIzaSyD8d-NQ8wjfW23ZjQPU2nAwZ0PTMF-gom8")
         response = youtube.search().list(
-            q="{0} trailer".format(self.title),
+            q=u"{0} trailer".format(self.title),
             type="video",
             videoDuration="short",
             part="id,snippet"

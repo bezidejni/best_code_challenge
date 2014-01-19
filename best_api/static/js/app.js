@@ -48,6 +48,7 @@ mevies.filter('tagsFilter', function() {
 
 mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 
+	$scope.currentPage = 1;
 	$scope.listView = false;
 	$scope.tagFilters = [];
 
@@ -62,10 +63,11 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 			});
 	}
 
-	var requestData = {page_size: 1008};
+	var requestData = {page_size: 120};
 	Movies.getList(requestData)
 		.success(function(data) {
 			$scope.movies = data.results;
+			$scope.numOfMovies = data.count;
 			angular.forEach($scope.movies, function(movie, index){
 				movie.tags = movie.genre.split(',');
 			});
@@ -79,5 +81,57 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 		console.log(index);
 		$scope.tagFilters.splice(index, 1);
 	}
+
+	$scope.searchMovies = function() {
+        // When the search text field is changed this function is fired. We don't want to fire off
+        // an ajax request with every change. Rather, let's be a little smart about this and fire
+        // off a request if there hasn't been a change within 1.5 seconds.
+        $scope.pages = [];
+
+        $scope.currentPage = 1;
+        $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+
+        // TODO Don't make canceler global.
+        if (typeof canceler !== 'undefined') { canceler.resolve(); }
+
+        canceler = $q.defer();
+
+        $timeout.cancel($scope.stopSearch);
+        $scope.gettingMovies = true;
+        var requestData = {
+            search: $scope.searchMovies,
+            //ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+            page_size: 120,
+            page: 1
+        };
+
+        $scope.stopSearch = $timeout(function() {
+            Movies.getList(requestData, canceler.promise).
+                success(function(data) {
+                    $scope.gettingMovies = false;
+                    $scope.movies = data.results;
+                    $scope.nextPageUrl = data.next;
+                    $scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies, 24));
+
+                    $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+
+                    $scope.noOfPages = parseInt(data.count / 24, 10);
+                });
+        }, 1500);
+    };
+
+    $scope.paginate = function(data, pageSize) {
+        var newArr = [];
+        var pages = [];
+
+        // Copy the contents of data into newArr, breaking the reference.
+        for (var i in data) { newArr.push(data[i]); }
+
+        while (newArr.length > 0) {
+            pages.push(newArr.splice(0, pageSize));
+        }
+
+        return pages;
+    };
 
 }]);

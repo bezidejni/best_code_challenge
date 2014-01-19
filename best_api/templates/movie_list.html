@@ -15,7 +15,8 @@
         <div class="col-sm-6">
             <div class="pull-right">
                 <div class="form-group pull-left">
-                    <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies.title">
+                    <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="searchMovies()">
+                    <span class="fui-cross clear-search" ng-if="searchMovies"></span>
                 </div>
                 <div class="btn-toolbar pull-left">
                     <div class="btn-group">
@@ -28,7 +29,7 @@
     </div>
 
     <div class="row movies" ng-cloak>
-        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in movies | tagsFilter:tagFilters | filter:searchMovies">
+        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in currentPageView | tagsFilter:tagFilters ">
             <div class="movie-poster">
                 <img ng-src="{{movie.poster}}" class="img-responsive" />
             </div>
@@ -37,6 +38,7 @@
                 <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
             </div>
         </div>
+        <pagination total-items="numOfMovies" page="currentPage" max-size="5"></pagination>
     </div>
     {% endverbatim %}
 {% endblock %}

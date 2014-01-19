@@ -31,7 +31,7 @@
     <div class="row movies" ng-cloak>
         <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in currentPageView | tagsFilter:tagFilters ">
             <div class="movie-poster">
-                <img ng-src="{{movie.poster}}" class="img-responsive" />
+                <img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-responsive" />
             </div>
             <h4 class="movie-title">{{movie.title}} ({{movie.year}})</h4>
             <div class="tags" ng-if="movie.tags.length != 0">

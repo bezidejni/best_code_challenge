@@ -53,8 +53,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.listView = false;
 	$scope.tagFilters = [];
 	$scope.pages = [];
+	$scope.predicate = 'year'
+	$scope.reverse = true;
 
-	var requestData = {page_size: 120};
+	var requestData = {page_size: 120, ordering: '-year'};
 	Movies.getList(requestData)
 		.success(function(data) {
 			$scope.gettingMovies = false;
@@ -94,9 +96,9 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		$timeout.cancel($scope.stopSearch);
 		$scope.gettingMovies = true;
 		var requestData = {
-			search: $scope.searchMovies,
-			//ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
-			page_size: 120,
+			title: $scope.searchMovies,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			page_size: 240,
 			page: 1
 		};
 

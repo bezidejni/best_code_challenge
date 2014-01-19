@@ -13,7 +13,7 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	return {
 		getList: function(params) {
 			return $http({
-				method: 'JSONP',
+				method: 'GET',
 				url: API_BASE_URL + 'movies/',
 				params: params
 			});

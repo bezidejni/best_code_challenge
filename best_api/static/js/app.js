@@ -56,19 +56,23 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.predicate = 'year'
 	$scope.reverse = true;
 
-	var requestData = {page_size: 120, ordering: '-year'};
-	Movies.getList(requestData)
-		.success(function(data) {
-			$scope.gettingMovies = false;
-			$scope.movies = data;
-			angular.forEach($scope.movies.results, function(movie, index){
-				movie.tags = movie.genre.split(',');
+	$scope.getMovies = function(requestData) {
+		Movies.getList(requestData)
+			.success(function(data) {
+				$scope.gettingMovies = false;
+				$scope.movies = data;
+				angular.forEach($scope.movies.results, function(movie, index){
+					movie.tags = movie.genre.split(',');
+				});
+				$scope.nextPageUrl = data.next;
+				$scope.pages = $scope.paginate($scope.movies.results, 24);
+				$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+				$scope.totalNumOfMovies = data.count;
 			});
-			$scope.nextPageUrl = data.next;
-			$scope.pages = $scope.paginate($scope.movies.results, 24);
-			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-			$scope.totalNumOfMovies = data.count;
-		});
+	}
+
+	var requestData = {page_size: 240, ordering: '-year'};
+	$scope.getMovies(requestData);
 
 	$scope.addTagFilter = function(tag) {
 		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) $scope.tagFilters.push(tag.toLowerCase());
@@ -117,6 +121,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
 	$scope.clearSearch = function() {
 		$scope.searchMovies = '';
+		var requestData = {page_size: 240, ordering: '-year'};
+		$scope.getMovies(requestData);
 	}
 
 	$scope.paginate = function(data, pageSize) {

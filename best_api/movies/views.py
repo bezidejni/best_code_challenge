@@ -5,10 +5,10 @@ from .serializers import MovieSerializer
 
 
 class MovieList(ListView):
-    template_name = "index.html"
-    queryset = Movie.objects.all()
-    paginate_by = 10
     context_object_name = "movies"
+    paginate_by = 10
+    queryset = Movie.objects.all()
+    template_name = "movie_list.html"
 
 
 class MovieDetail(DetailView):

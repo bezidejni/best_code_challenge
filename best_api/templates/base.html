@@ -21,7 +21,6 @@
 	<![endif]-->
 </head>
 <body ng-app="mevies" ng-controller="MeviesCtrl">
-{% verbatim %}
 	<header class="palette-turquoise">
 		<div class="container">
 			<div class="row">
@@ -32,31 +31,11 @@
 	</header>
 
 	<div class="container">
-		<div class="row display">
-			<div class="pull-right">
-			  <div class="btn-toolbar">
-				<div class="btn-group">
-				  <a href="#fakelink" class="btn btn-primary" ng-class="{ active: !listView }" ng-click="listView = false"><span class="glyphicon glyphicon-th"></span></a>
-				  <a href="#fakelink" class="btn btn-primary" ng-class="{ active: listView }" ng-click="listView = true"><span class="fui-list"></span></a>
-				</div>
-			  </div> <!-- /toolbar -->
-			</div>
-		</div>
+        {% block content %}
 
-		<div class="row movies">
-			<div class="col-sm-3 col-md-2 movie" ng-repeat="movie in movies">
-				<div class="movie-poster">
-					<img ng-src="{{movie.poster}}" class="img-responsive" />
-				</div>
-				<h4 class="movie-title">{{movie.title}} ({{movie.year}})</h4>
-				<div class="tags" ng-if="movie.tags.length != 0">
-					<div class="tag" ng-repeat="tag in movie.tags">{{tag.toLowerCase()}}</div>
-				</div>
-			</div>
-		</div>
+        {% endblock %}
 	</div>
 	<!-- /.container -->
-{% endverbatim %}
 
 	{% compress js %}
 		<script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>

@@ -17,6 +17,7 @@ class Movie(models.Model):
     genre = models.CharField(max_length=100, blank=True)
     imdb_rating = models.CharField(max_length=3, blank=True)
     imdb_id = models.CharField(max_length=15, blank=True)
+    youtube_video_id = models.CharField(max_length=20, blank=True)
     runtime = models.IntegerField(null=True, blank=True)
     plot = models.TextField(blank=True)
     poster = models.ImageField(upload_to='posters', blank=True, max_length=200)
@@ -91,6 +92,11 @@ class Movie(models.Model):
             videoDuration="short",
             part="id,snippet"
         ).execute()
+        results = response.get("items")
+        if results:
+            top_item = results[0]
+            self.youtube_video_id = top_item["id"]["videoId"]
+            self.save()
 
     def poster_url(self):
         if not self.poster:

@@ -36,11 +36,11 @@ mevies.controller('MeviesCtrl', ['$scope', 'Movies', function ($scope, Movies) {
 		});
 
 	$scope.addTagFilter = function(tag) {
-		$scope.tagFilters.push(tag.toLoweCase());
+		$scope.tagFilters.push(tag.toLowerCase());
 	}
 
-	$scope.removeTagFilter = function(tag) {
-		$scope.tagFilters.splice($scope.tagFilters.indexOf(tag.toLowerCase()));
+	$scope.removeTagFilter = function(index) {
+		$scope.tagFilters.slice(index);
 	}
 
 }]);

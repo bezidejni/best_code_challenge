@@ -38,7 +38,10 @@
                 <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
             </div>
         </div>
-        <div class="pull-left">
+    </div>
+
+    <div class="row">
+        <div class="pull-left legend">
             Showing {{ (24 * (currentPage - 1)) + 1; }} to {{ (24 * (currentPage - 1)) + pages[currentPage - 1].length }} of {{ movies.count }} movies
             <span ng-show="searchMovies">(filtered from {{ totalNumOfMovies }} total movies)</span>
         </div>

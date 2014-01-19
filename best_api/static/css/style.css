@@ -103,6 +103,11 @@ h4.movie-title {
   vertical-align: middle;
 }
 
+.legend {
+    height: 40px;
+    line-height: 40px;
+    margin: 20px 0;
+}
 .pagination a {
   cursor: pointer;
 }

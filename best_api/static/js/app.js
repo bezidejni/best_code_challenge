@@ -52,6 +52,7 @@ mevies.factory('YtPlayerApi', ['$window', '$rootScope', function ($window, $root
     };
 
     ytplayer.startVideo = function () {
+    	console.log('sss');
     	this.playerObj.playVideo();
     }
     return ytplayer;

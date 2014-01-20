@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.templatetags.static import static
 from apiclient.discovery import build
 import django_filters
 import imdb
@@ -98,6 +99,16 @@ class Movie(models.Model):
             top_item = results[0]
             self.youtube_video_id = top_item["id"]["videoId"]
             self.save()
+
+    def poster_url(self):
+        """
+        Returns the poster URL or the 'not found' poster
+        in case the movie doesn't have one.
+        """
+        if self.poster:
+            return self.poster.url
+        else:
+            return static("images/default_poster.png")
 
     def imdb_link(self):
         """

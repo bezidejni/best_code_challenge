@@ -52,7 +52,7 @@ mevies.factory('YtPlayerApi', ['$window', '$rootScope', function ($window, $root
     };
 
     ytplayer.startVideo = function () {
-
+    	this.playerObj.playVideo();
     }
     return ytplayer;
 }])
@@ -86,7 +86,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
     $scope.$on('loadedApi',function () {
 		ytplayer.videoId='orPQsEaCwok';
 		ytplayer.loadPlayer();
-		ytplayer.playVideo();
+		ytplayer.startVideo();
 	});
 
 	$scope.currentPage = 1;

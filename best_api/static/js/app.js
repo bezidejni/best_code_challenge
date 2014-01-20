@@ -221,7 +221,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			genre: $scope.tagFilters.join(',')
 		};
 
-        $scope.getMovies(params, canceler.promise);
+        $scope.getMovies(requestData, canceler.promise);
     };
 
 	$scope.paginate = function(data, pageSize) {

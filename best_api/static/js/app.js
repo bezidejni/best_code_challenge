@@ -28,57 +28,7 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	};
 }]);
 
-mevies.filter('tagsFilter', function() {
-	return function(movies, tags) {
-		if (!angular.isUndefined(movies) && !angular.isUndefined(tags) && tags.length > 0) {
-
-			var filteredMovies = [];
-			angular.forEach(movies, function(movie, key){
-				var matches = 0;
-				angular.forEach(tags, function(tag, index){
-					if (movie.genre.toLowerCase().indexOf(tag) !== -1) matches++;
-				});
-				if (matches === tags.length) filteredMovies.push(movie);
-			});
-
-			return filteredMovies;
-		}
-		else return movies;
-	}
-});
-
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
-
-	
-
-      window.onYouTubeIframeAPIReady = function() {
-
-      $scope.player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      //width: '900',
-      videoId: 'pV9mZYyv8As',
-      playerVars: {
-            controls: '0',	// don't show video controls in the player
-            showinfo: '0',	// don't show the title of the video upon hover etc.
-            modestbranding: '1', // minimal branding
-            rel: '0',	// don't show related videos when the video ends
-            theme: 'light',	// light or dark theme
-            origin: 'http://localhost:8000',	// should be your domain
-            iv_load_policy: '3',	// don't show video annotations by default
-            enablejsapi: '1'
-          },
-      events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-      }
-      });
-      };
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-      event.target.playVideo();
-      }
 
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;

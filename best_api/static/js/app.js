@@ -188,4 +188,18 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			}
 	});
 
+	var player = new YT.Player('player', {
+		events: {
+			'onReady': $scope.onPlayerReady,
+			'onStateChange': $scope.onPlayerStateChange
+		}
+	});
+	$scope.onPlayerReady = function(event) {
+	    console.log('aaa');
+	    event.target.playVideo();
+	}
+	$scope.onPlayerStateChange = function(event) {
+	    console.log(event);
+	}
+
 }]);

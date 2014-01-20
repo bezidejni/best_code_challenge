@@ -24,7 +24,7 @@
         <div class="video-js vjs-using-native-controls vjs-controls-enabled vjs-paused vjs-user-inactive" id="vjs_video">
             <iframe id="player" width="560" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/orPQsEaCwok?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3"></iframe>
             <div class="vjs-control-bar">
-                <div class="vjs-play-control vjs-control " aria-live="polite" tabindex="0">
+                <div class="vjs-play-control vjs-control " aria-live="polite" tabindex="0" ng-click="startStopVideo()">
                     <div class="vjs-control-content"><span class="vjs-control-text">Play</span></div>
                 </div>
                 <div class="vjs-current-time vjs-time-controls vjs-control">
@@ -116,7 +116,7 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 function onPlayerStateChange(event) {
-    console.log(event.data);
+    console.log(event);
 }
 </script>
 

@@ -54,6 +54,10 @@ header p {
     margin-left: 15px;
 }
 
+.display .dropdown button {
+  width: 164px;
+}
+
 .display .btn-toolbar {
   margin-left: 15px;
 }

@@ -19,7 +19,7 @@
                     <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
                 </div>
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by<span class="caret"></span></button>
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate}})<span class="caret"></span></button>
                     <span class="dropdown-arrow"></span>
                     <ul class="dropdown-menu">
                         <li ng-class="{selected: predicate == 'title'}"><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>

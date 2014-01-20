@@ -49,6 +49,11 @@ mevies.filter('tagsFilter', function() {
 
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
+	var tag = document.createElement('script');
+    tag.src = "//www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;
 	$scope.listView = false;
@@ -187,19 +192,5 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				}
 			}
 	});
-
-	var player = new YT.Player('player', {
-		events: {
-			'onReady': $scope.onPlayerReady,
-			'onStateChange': $scope.onPlayerStateChange
-		}
-	});
-	$scope.onPlayerReady = function(event) {
-	    console.log('aaa');
-	    event.target.playVideo();
-	}
-	$scope.onPlayerStateChange = function(event) {
-	    console.log(event);
-	}
 
 }]);

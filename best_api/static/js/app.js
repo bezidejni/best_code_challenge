@@ -141,6 +141,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				title: $scope.searchMovies,
 				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 				page_size: 240,
+				page: 1,
 				genre: $scope.tagFilters.join(',')
 			};
 
@@ -172,7 +173,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			title: $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 			page_size: 240,
-			page: 1
+			page: 1,
+			genre: $scope.tagFilters.join(',')
 		};
 
 		$scope.stopSearch = $timeout(function() {
@@ -211,12 +213,13 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
         $scope.gettingMovies = true;
 
-        var params = {
-            search: $scope.searchMovies,
-            ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
-            page_size: 240,
-            page: 1
-        };
+        var requestData = {
+			title: $scope.searchMovies,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			page_size: 240,
+			page: 1,
+			genre: $scope.tagFilters.join(',')
+		};
 
         $scope.getMovies(params, canceler.promise);
     };

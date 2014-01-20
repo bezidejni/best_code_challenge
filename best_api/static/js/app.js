@@ -49,7 +49,7 @@ mevies.filter('tagsFilter', function() {
 
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
-	$scope.$on('$viewContentLoaded', function(){
+	
 
       window.onYouTubeIframeAPIReady = function() {
 
@@ -79,8 +79,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
       function onPlayerReady(event) {
       event.target.playVideo();
       }
-
-  });
 
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;

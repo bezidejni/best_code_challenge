@@ -28,37 +28,6 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	};
 }]);
 
-mevies.factory('YtPlayerApi', ['$window', '$rootScope', function ($window, $rootScope) {
-    var ytplayer = {"playerId":'player',
-    "playerObj":null,
-    "videoId":null,
-    "height":315,
-    "width":560};
-
-    $window.onYouTubeIframeAPIReady = function () {
-        $rootScope.$broadcast('loadedApi');
-    };
-
-    ytplayer.setPlayerId = function(elemId) {
-        this.playerId=elemId;
-    };
-
-    ytplayer.loadPlayer = function () {
-    	console.log('sss');
-       this.playerObj = new YT.Player('player', {
-            height: this.height,
-            width: this.width,
-            videoId: this.videoId
-        });
-    };
-
-    ytplayer.startVideo = function () {
-    	console.log('sss');
-    	this.playerObj.playVideo();
-    }
-    return ytplayer;
-}])
-
 mevies.filter('tagsFilter', function() {
 	return function(movies, tags) {
 		if (!angular.isUndefined(movies) && !angular.isUndefined(tags) && tags.length > 0) {
@@ -80,16 +49,38 @@ mevies.filter('tagsFilter', function() {
 
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
 
-	var tag = document.createElement('script');
-    tag.src = "//www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	$scope.$on('$viewContentLoaded', function(){
 
-    $scope.$on('loadedApi',function () {
-		ytplayer.videoId='orPQsEaCwok';
-		ytplayer.loadPlayer();
-		ytplayer.startVideo();
-	});
+      window.onYouTubeIframeAPIReady = function() {
+
+      $scope.player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      //width: '900',
+      videoId: 'pV9mZYyv8As',
+      playerVars: {
+            controls: '0',	// don't show video controls in the player
+            showinfo: '0',	// don't show the title of the video upon hover etc.
+            modestbranding: '1', // minimal branding
+            rel: '0',	// don't show related videos when the video ends
+            theme: 'light',	// light or dark theme
+            origin: 'http://localhost:8000',	// should be your domain
+            iv_load_policy: '3',	// don't show video annotations by default
+            enablejsapi: '1'
+          },
+      events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+      }
+      });
+      };
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+      event.target.playVideo();
+      }
+
+  });
 
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;

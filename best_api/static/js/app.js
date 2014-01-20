@@ -28,6 +28,31 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	};
 }]);
 
+mevies.factory('YtPlayerApi', ['$window', '$rootScope', function ($window, $rootScope) {
+    var ytplayer = {"playerId":'player',
+    "playerObj":null,
+    "videoId":null,
+    "height":315,
+    "width":560};
+
+    $window.onYouTubeIframeAPIReady = function () {
+        $rootScope.$broadcast('loadedApi');
+    };
+
+    ytplayer.setPlayerId = function(elemId) {
+        this.playerId=elemId;
+    };
+
+    ytplayer.loadPlayer = function () {
+       this.playerObj = new YT.Player('player', {
+            height: this.height,
+            width: this.width,
+            videoId: this.videoId
+        });
+    };
+    return ytplayer;
+}])
+
 mevies.filter('tagsFilter', function() {
 	return function(movies, tags) {
 		if (!angular.isUndefined(movies) && !angular.isUndefined(tags) && tags.length > 0) {
@@ -53,6 +78,11 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
     tag.src = "//www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    $scope.$on('loadedApi',function () {
+		ytplayer.videoId='orPQsEaCwok';
+		ytplayer.loadPlayer();
+	});
 
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;

@@ -122,6 +122,18 @@ h4.movie-title {
   border-color: #1ABC9C;
 }
 
+.video-js {
+    height: 0;
+    padding-bottom: 56.25%;
+    width: 100%;
+}
+
+.video-js iframe {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .movies .movie {
       height: 320px;

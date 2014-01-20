@@ -99,11 +99,6 @@ class Movie(models.Model):
             self.youtube_video_id = top_item["id"]["videoId"]
             self.save()
 
-    def poster_url(self):
-        if not self.poster:
-            return None
-        return self.poster.url
-
     def imdb_link(self):
         """
         Returns the link to the IMDB movie page based on the IDMB ID from the database
@@ -111,9 +106,24 @@ class Movie(models.Model):
         return "http://www.imdb.com/title/{0}/reference".format(self.imdb_id)
 
 
+def get_by_genre(qs, genres):
+    """
+    Splits the comma separated genre list and filters
+    the queryset so it contains all the genres from the list.
+    """
+    genres = genres.split(",")
+    for genre in genres:
+        qs = qs.filter(genre__icontains=genre)
+    return qs
+
+
 class MovieFilter(django_filters.FilterSet):
+    """
+    Filter for movie objects in the API that allows filtering by
+    title, genre or year.
+    """
     title = django_filters.CharFilter(name="title", lookup_type="icontains")
-    genre = django_filters.CharFilter(name="genre", lookup_type="icontains")
+    genre = django_filters.CharFilter(name="genre", action=get_by_genre)
 
     class Meta:
         model = Movie

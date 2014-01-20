@@ -151,6 +151,21 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
 	$scope.removeTagFilter = function(index) {
 		$scope.tagFilters.splice(index, 1);
+
+		// TODO Don't make canceler global.
+		if (typeof canceler !== 'undefined') { canceler.resolve(); }
+		canceler = $q.defer();
+		$scope.gettingMovies = true;
+
+		var requestData = {
+			title: $scope.searchMovies,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			page_size: 240,
+			page: 1,
+			genre: $scope.tagFilters.join(',')
+		};
+
+		$scope.getFilteredList(requestData, canceler);
 	}
 
 	$scope.search = function() {

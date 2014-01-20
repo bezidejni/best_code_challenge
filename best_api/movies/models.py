@@ -21,6 +21,7 @@ class Movie(models.Model):
     runtime = models.IntegerField(null=True, blank=True)
     plot = models.TextField(blank=True)
     poster = models.ImageField(upload_to='posters', blank=True, max_length=200)
+    slug = models.SlugField(max_length=100)
 
     def __unicode__(self):
         return self.title

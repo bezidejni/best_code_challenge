@@ -21,4 +21,4 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Movie
         fields = ('id', 'title', 'year', 'genre', 'imdb_rating', 'imdb_id',
-                  'runtime', 'plot', 'poster', 'youtube_video_id')
+                  'runtime', 'plot', 'poster', 'youtube_video_id', 'slug')

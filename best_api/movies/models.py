@@ -99,11 +99,6 @@ class Movie(models.Model):
             self.youtube_video_id = top_item["id"]["videoId"]
             self.save()
 
-    def poster_url(self):
-        if not self.poster:
-            return None
-        return self.poster.url
-
     def imdb_link(self):
         """
         Returns the link to the IMDB movie page based on the IDMB ID from the database

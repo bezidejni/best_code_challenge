@@ -116,7 +116,16 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.getMovies(requestData);
 
 	$scope.addTagFilter = function(tag) {
-		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) $scope.tagFilters.push(tag.toLowerCase());
+		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) {
+			$scope.tagFilters.push(tag.toLowerCase());
+			console.log($scope.tagFilters.join(','));
+			var requestData = {
+				title: $scope.searchMovies,
+				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+				page_size: 240,
+				genre: ''
+			};
+		}
 	}
 
 	$scope.removeTagFilter = function(index) {

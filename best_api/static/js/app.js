@@ -44,6 +44,7 @@ mevies.factory('YtPlayerApi', ['$window', '$rootScope', function ($window, $root
     };
 
     ytplayer.loadPlayer = function () {
+    	console.log('sss');
        this.playerObj = new YT.Player('player', {
             height: this.height,
             width: this.width,

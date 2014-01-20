@@ -111,6 +111,19 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				$scope.totalNumOfMovies = data.count;
 			});
 	}
+	$scope.getFilteredList = function(requestData, promise) {
+		Movies.getList(requestData, promise)
+			.success(function(data) {
+				$scope.gettingMovies = false;
+				$scope.movies = data;
+				angular.forEach($scope.movies.results, function(movie, index){
+					if(movie.genre !== '') movie.tags = movie.genre.split(',');
+				});
+				$scope.nextPageUrl = data.next;
+				$scope.pages = $scope.paginate($scope.movies.results, 24);
+				$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+			});
+	}
 
 	var requestData = {page_size: 240, ordering: '-year'};
 	$scope.getMovies(requestData);
@@ -118,13 +131,20 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.addTagFilter = function(tag) {
 		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) {
 			$scope.tagFilters.push(tag.toLowerCase());
-			console.log($scope.tagFilters.join(','));
+
+			// TODO Don't make canceler global.
+			if (typeof canceler !== 'undefined') { canceler.resolve(); }
+			canceler = $q.defer();
+			$scope.gettingMovies = true;
+
 			var requestData = {
 				title: $scope.searchMovies,
 				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 				page_size: 240,
-				genre: ''
+				genre: $scope.tagFilters.join(',')
 			};
+
+			$scope.getFilteredList(requestData, canceler);
 		}
 	}
 
@@ -187,7 +207,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 
         // TODO Don't make canceler global.
         if (typeof canceler !== 'undefined') { canceler.resolve(); }
-
         canceler = $q.defer();
 
         $scope.gettingMovies = true;

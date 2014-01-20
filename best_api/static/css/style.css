@@ -126,12 +126,15 @@ h4.movie-title {
     height: 0;
     padding-bottom: 56.25%;
     width: 100%;
+    position: relative;
 }
 
 .video-js iframe {
     height: 100%;
     position: absolute;
     width: 100%;
+    left: 0;
+    top: 0;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

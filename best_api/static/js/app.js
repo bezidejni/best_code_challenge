@@ -121,8 +121,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				});
 				$scope.nextPageUrl = data.next;
 				$scope.pages = $scope.paginate($scope.movies.results, 24);
-
-				$scope.pages = [];
 				$scope.currentPage = 1;
 				$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 			});

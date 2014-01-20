@@ -122,6 +122,10 @@ h4.movie-title {
   border-color: #1ABC9C;
 }
 
+.movie-details {
+  padding-bottom: 80px;
+}
+
 .video-js {
     height: 0;
     padding-bottom: 56.25%;

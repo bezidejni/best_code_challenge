@@ -24,6 +24,12 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 				method: 'GET',
 				url: url
 			});
+		},
+		getMovie: function(movie_id) {
+			return $http({
+				method: 'GET',
+				url: API_BASE_URL + 'movies/' + movie_id + '/'
+			});
 		}
 	};
 }]);
@@ -37,6 +43,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.pages = [];
 	$scope.predicate = 'year'
 	$scope.reverse = true;
+
+	console.log(window.location.pathname.split('/'));
 
 	$scope.getMovies = function(requestData, promise) {
 		Movies.getList(requestData, promise)
@@ -67,7 +75,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			});
 	}
 
-	var requestData = {page_size: 240, ordering: '-year'};
+	var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};
 	$scope.getMovies(requestData);
 
 	$scope.addTagFilter = function(tag) {

@@ -12,7 +12,7 @@
                         <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-search" ng-init="searchBy = 'Title'">{{searchBy}}<span class="caret"></span></button>
                         <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                         <ul class="dropdown-menu dropdown-inverse">
-                            <li ng-repeat="s in searchParams" ng-class="{selected: searchBy == s}"><a href="#fakelink" ng-click="searchBy = s">Title</a></li>
+                            <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="#fakelink" ng-click="searchBy = searchParam">{{searchParam}}</a></li>
                         </ul>
                     </div>
                 </div>

@@ -9,10 +9,10 @@
                     <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
                     <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
                     <div class="dropdown-search">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-search" ng-init="searchBy = 'Title'">{{searchBy}}<span class="caret"></span></button>
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-search">{{searchBy}}<span class="caret"></span></button>
                         <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                         <ul class="dropdown-menu dropdown-inverse">
-                            <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="#fakelink" ng-click="searchBy = searchParam">{{searchParam}}</a></li>
+                            <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="#fakelink" ng-click="changeSearchBy(searchParam)">{{searchParam}}</a></li>
                         </ul>
                     </div>
                 </div>

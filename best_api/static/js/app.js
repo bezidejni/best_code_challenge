@@ -158,6 +158,11 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.getFilteredList(requestData, canceler);
 	}
 
+	// change the search parameter
+	$scope.changeSearchParam = function(searchParam) {
+		$scope.searchBy = searchParam;
+	}
+
 	// search movies using the API
 	$scope.search = function() {
 		// When the search text field is changed this function is fired. We don't want to fire off

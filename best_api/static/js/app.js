@@ -111,7 +111,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	$scope.getRecommendations = function() {
 		Movies.getRecommendations()
 			.success(function(data) {
-				console.log(data);
+				$scope.recommendedMovies = data.results;
 			});
 	}
 

@@ -211,6 +211,9 @@ h4.movie-title a {
   .display {
     height: 145px;
   }
+  .display .col-xs-12 {
+    padding: 0 15px;
+  }
   .display .form-group {
     width: 100%;
   }
@@ -222,6 +225,15 @@ h4.movie-title a {
   }
   .display .tagsinput {
     margin-top: 8px;
+  }
+  .display .search .dropdown-search button {
+    border-radius: 0 4px 4px 0;
+    height: 42px;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
   }
   .movies .movie {
     height: auto;

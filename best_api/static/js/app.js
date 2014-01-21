@@ -151,12 +151,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.gettingMovies = true;
 
 		var requestData = {
-			($scope.searchBy.toLowerCase()): $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')
 		};
+		requestData[$scope.searchBy.toLowerCase()] = $scope.searchMovies;
 
 		$scope.stopSearch = $timeout(function() {
 			Movies.getList(requestData, canceler.promise).

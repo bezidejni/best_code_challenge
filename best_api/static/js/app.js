@@ -1,4 +1,4 @@
-var mevies = angular.module('mevies', ['ui.bootstrap']);
+var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize']);
 
 mevies.config(function($provide, $windowProvider, $httpProvider) {
 	var apiBaseUrl = 'http://movies.jukic.me/api/';
@@ -34,7 +34,7 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	};
 }]);
 
-mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function ($scope, $timeout, $q, Movies) {
+mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', function ($scope, $timeout, $q, $sce, Movies) {
 
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;
@@ -49,7 +49,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		Movies.getMovie(movieId)
 			.success(function(data) {
 				$scope.movie = data;
-				$scope.movieTrailer = 'https://www.youtube.com/embed/' + $scope.movie.youtube_video_id + '}?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3';
+				$scope.movieTrailer = $sce.trustAsHtml('<iframe id="player" width="560" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/' + $scope.movie.youtube_video_id + '}?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3"></iframe>');
 				$scope.movieLoaded = true;
 			});
 	}

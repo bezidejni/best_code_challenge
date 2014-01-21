@@ -151,7 +151,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.gettingMovies = true;
 
 		var requestData = {
-			title: $scope.searchMovies,
+			$scope.searchBy.toLowerCase(): $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 			page_size: 240,
 			page: 1,

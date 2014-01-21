@@ -50,6 +50,18 @@ header .logo-wrapper a {
   padding-left: 12px;
 }
 
+.display .search {
+  padding-right: 106px;
+}
+
+.display .search .dropdown {
+  width: 110px;
+  height: 42px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .display .form-control {
   margin-right: 15px;
 }

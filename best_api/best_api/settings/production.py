@@ -1,12 +1,19 @@
 import os
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '.jukic.me',
     '.jukic.me.',
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'best_api'
+    }
+}
 
 DATABASES = {
     'default': {

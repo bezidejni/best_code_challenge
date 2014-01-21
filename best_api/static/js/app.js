@@ -49,6 +49,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 		Movies.getMovie(movieId)
 			.success(function(data) {
 				$scope.movie = data;
+				$scope.movieTrailer = 'https://www.youtube.com/embed/' + $scope.movie.youtube_video_id + '}?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3';
 			});
 	}
 

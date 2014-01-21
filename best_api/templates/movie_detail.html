@@ -103,15 +103,18 @@
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	var playing = false;
-
-	var player;
+	console.log(window.movieLoaded);
+	$(window.movieLoaded).change(function() {
+		console.log(window.movieLoaded);
+	});
+	/*var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
 			events: {
 				'onStateChange': onPlayerStateChange
 			}
 		});
-	}
+	}*/
 
 	function startStopVideo(event) {
 		if (playing) player.pauseVideo();

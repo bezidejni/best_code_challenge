@@ -1,6 +1,7 @@
-from rest_framework import filters, viewsets
+from rest_framework import filters, mixins, viewsets
 from django.views.generic import DetailView, TemplateView
 from .models import Movie, MovieFilter
+from .recommendations import ItemBasedRecommender
 from .serializers import MovieSerializer
 
 
@@ -28,3 +29,18 @@ class MovieViewSet(viewsets.ReadOnlyModelViewSet):
     paginate_by = 10
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+
+
+class RecommendationsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    serializer_class = MovieSerializer
+    model = Movie
+
+    def get_queryset(self):
+        recommender = ItemBasedRecommender(load_from_disk=True)
+        movies_seen = self.request.session.get('movies_seen', [])
+        ratings = {movie_id: 5.0 for movie_id in movies_seen}
+        if ratings:
+            recommended_movies = recommender.getRecommendedItems(ratings)
+            return Movie.objects.filter(id__in=recommended_movies)
+        else:
+            return Movie.objects.none()

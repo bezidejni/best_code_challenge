@@ -7,6 +7,7 @@ from movies import views
 admin.autodiscover()
 
 router = routers.DefaultRouter()
+router.register(r'recommendations', views.RecommendationsViewSet)
 router.register(r'movies', views.MovieViewSet)
 
 urlpatterns = patterns('',

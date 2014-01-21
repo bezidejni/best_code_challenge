@@ -113,6 +113,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 # REST Framework options
 
 REST_FRAMEWORK = {

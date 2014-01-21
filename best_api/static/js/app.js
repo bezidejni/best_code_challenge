@@ -53,6 +53,9 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	$scope.predicate = $scope.predicates[0];
 	$scope.reverse = true;
 
+	$scope.searchParams = ['Title', 'Actor', 'Director'];
+	$scope.searchBy = $scope.searchParams[0];
+
 
 	// SCOPE FUNCTIONS
 
@@ -216,7 +219,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
         $scope.pages = [];
         $scope.currentPage = 1;
         $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-        $scope.predicate = newPredicate;
+        if (!angular.isUndefined(newPredicate)) $scope.predicate = newPredicate;
 
         // TODO Don't make canceler global.
         if (typeof canceler !== 'undefined') { canceler.resolve(); }

@@ -48,7 +48,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.getMovie = function(movieId) {
 		Movies.getMovie(movieId)
 			.success(function(data) {
-				console.log(data);
+				$scope.movie = data;
 			});
 	}
 

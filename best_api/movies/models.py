@@ -21,6 +21,9 @@ class Movie(models.Model):
     youtube_video_id = models.CharField(max_length=20, blank=True)
     runtime = models.IntegerField(null=True, blank=True)
     plot = models.TextField(blank=True)
+    director = models.CharField(blank=True, max_length=150)
+    writers = models.TextField(blank=True)
+    actors = models.TextField(blank=True)
     poster = models.ImageField(upload_to='posters', blank=True, max_length=200)
     slug = models.SlugField(max_length=100)
 
@@ -67,6 +70,17 @@ class Movie(models.Model):
             self.genre = ", ".join(movie.get('genres', []))
             self.imdb_rating = movie.get("rating", "")
             self.imdb_id = "tt" + movie.movieID
+            director = movie.get("director")
+            if director:
+                self.director = director[0].get("name")
+            writers = movie.get("writers")
+            if writers:
+                writers = [writer.get("name") for writer in writers]
+                self.writers = ", ".join(writers)
+            actors = movie.get("actors")[:10]
+            if actors:
+                actors = [actor.get("name") for actor in actors]
+                self.actors = ", ".join(actors)
             runtimes = movie.get("runtimes")
             if runtimes:
                 # get only digits from string (example UK:112min -> 112)

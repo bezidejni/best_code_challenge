@@ -144,6 +144,7 @@ h4.movie-title a {
 .movies .movie .tags {
   position: absolute;
   bottom: 0;
+  line-height: 24px;
 }
 
 .movies .movie .tags .tag {
@@ -154,7 +155,7 @@ h4.movie-title a {
   display: inline-block;
   font-size: 10px;
   line-height: 13px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   margin-right: 2px;
   overflow: hidden;
   padding: 4px 5px 6px;

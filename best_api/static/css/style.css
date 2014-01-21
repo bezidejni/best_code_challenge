@@ -211,8 +211,14 @@ h4.movie-title a {
   .display {
     height: 145px;
   }
+  .display .search {
+    margin-bottom: 15px;
+  }
   .ordering {
     width: 100%;
+  }
+  .display .tagsinput {
+    margin-top: 8px;
   }
   .movies .movie {
     height: auto;

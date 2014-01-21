@@ -216,7 +216,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
         $scope.pages = [];
         $scope.currentPage = 1;
         $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
-        console.log(newPredicate);
+        $scope.predicate = newPredicate;
 
         // TODO Don't make canceler global.
         if (typeof canceler !== 'undefined') { canceler.resolve(); }

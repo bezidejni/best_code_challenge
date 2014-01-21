@@ -20,12 +20,10 @@
                 </div>
                 <div class="ordering pull-left">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate}})<span class="caret"></span></button>
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate.name}})<span class="caret"></span></button>
                         <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                         <ul class="dropdown-menu dropdown-inverse">
-                            <li ng-class="{selected: predicate == 'title'}"><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>
-                            <li ng-class="{selected: predicate == 'year'}"><a href="#fakelink" ng-click="predicate = 'year'; sort();">Year</a></li>
-                            <li ng-class="{selected: predicate == 'rating'}"><a href="#fakelink" ng-click="predicate = 'rating'; sort();">Rating</a></li>
+                            <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="#fakelink" ng-click="predicate = p; sort();">{{p.name}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-toolbar pull-left">

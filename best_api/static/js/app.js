@@ -45,7 +45,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	$scope.tagFilters = [];
 
 	// ordering parameters
-	$scope.predicate = 'year'
+	$scope.predicates = [
+		{ name: 'Year', parameter: 'year,title' },
+		{ name: 'Title', parameter: 'title' },
+		{ name: 'Rating', parameter: 'imdb_rating' }
+	];
+	$scope.predicate = $scope.predicates[0];
 	$scope.reverse = true;
 
 
@@ -103,7 +108,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	else {
 		var requestData = {
 			page_size: 240, 
-			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter
 		};
 		$scope.getMovies(requestData);
 	}
@@ -119,7 +124,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			$scope.gettingMovies = true;
 
 			var requestData = {
-				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,
 				page_size: 240,
 				page: 1,
 				genre: $scope.tagFilters.join(',')
@@ -140,7 +145,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.gettingMovies = true;
 
 		var requestData = {
-			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')
@@ -168,7 +173,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.gettingMovies = true;
 
 		var requestData = {
-			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')
@@ -198,7 +203,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 		$scope.gettingMovies = true;
 		var requestData = {
-			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')
@@ -219,7 +224,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
         $scope.gettingMovies = true;
 
         var requestData = {
-			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')

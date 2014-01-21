@@ -224,6 +224,12 @@ h4.movie-title a {
   .display .clear-search {
     right: 108px;
   }
+  .display .search .dropdown-search .dropdown-arrow {
+    margin-top: 2px;
+  }
+  .display .search .dropdown-search .dropdown-menu {
+    top: 33px;
+  }
   .ordering {
     width: 100%;
   }

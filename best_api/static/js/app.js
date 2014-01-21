@@ -33,6 +33,12 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 				method: 'GET',
 				url: API_BASE_URL + 'movies/' + movie_id + '/'
 			});
+		},
+		getRecommendations: function() {
+			return $http({
+				method: 'GET',
+				url: API_BASE_URL + 'recommendations/'
+			});
 		}
 	};
 }]);
@@ -101,6 +107,14 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			});
 	}
 
+	// a function to get recommended movies
+	$scope.getRecommendations = function() {
+		Movies.getRecommendations()
+			.success(function(data) {
+				console.log(data);
+			});
+	}
+
 	// check if the page is a movie detail page
 	// and if it is, fetch the movie
 	var path = window.location.pathname.split('/');
@@ -115,6 +129,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		};
 		$scope.getMovies(requestData);
 	}
+	$scope.getRecommendations();
 
 	// add genre to filter list
 	$scope.addTagFilter = function(tag) {

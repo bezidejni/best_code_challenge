@@ -74,6 +74,12 @@
 		<script>
 			$(function() {
 				$('.btn-toolbar a').tooltip();
+
+				var playing = false;
+				console.log(window.movieLoaded);
+				$(window.movieLoaded).change(function() {
+					console.log(window.movieLoaded);
+				});
 			});
 
 			function getCookie(name) {

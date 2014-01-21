@@ -60,7 +60,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 				$scope.gettingMovies = false;
 				$scope.movies = data;
 				angular.forEach($scope.movies.results, function(movie, index){
-					if(movie.genre !== '') movie.tags = movie.genre.split(',');
+					if(movie.genre !== '') movie.tags = movie.genre.replace(' ', '').split(',');
 				});
 				$scope.nextPageUrl = data.next;
 				$scope.pages = $scope.paginate($scope.movies.results, 24);
@@ -75,7 +75,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 				$scope.gettingMovies = false;
 				$scope.movies = data;
 				angular.forEach($scope.movies.results, function(movie, index){
-					if(movie.genre !== '') movie.tags = movie.genre.split(',');
+					if(movie.genre !== '') movie.tags = movie.genre.replace(' ', '').split(',');
 				});
 				$scope.nextPageUrl = data.next;
 				$scope.pages = $scope.paginate($scope.movies.results, 24);
@@ -163,7 +163,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 					$scope.gettingMovies = false;
 					$scope.movies = data;
 					angular.forEach($scope.movies.results, function(movie, index){
-						if(movie.genre !== '') movie.tags = movie.genre.split(',');
+						if(movie.genre !== '') movie.tags = movie.genre.replace(' ', '').split(',');
 					});
 					$scope.nextPageUrl = data.next;
 					$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies.results, 24));
@@ -229,7 +229,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 						success(function(data) {
 							$scope.movies = data;
 							angular.forEach($scope.movies.results, function(movie, index){
-								if(movie.genre !== '') movie.tags = movie.genre.split(',');
+								if(movie.genre !== '') movie.tags = movie.genre.replace(' ', '').split(',');
 							});
 							$scope.nextPageUrl = data.next;
 							$scope.pages.push.apply($scope.pages, $scope.paginate($scope.movies.results, 24));

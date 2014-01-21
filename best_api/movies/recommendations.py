@@ -1,7 +1,7 @@
 import cPickle as pickle
 import os
 from math import sqrt
-from statsmodels.tools.eval_measures import meanabs, rmse
+#from statsmodels.tools.eval_measures import meanabs, rmse
 from django.core.cache import cache
 from django.conf import settings
 

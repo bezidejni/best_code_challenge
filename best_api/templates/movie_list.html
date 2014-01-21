@@ -3,7 +3,7 @@
 {% block content %}
     {% verbatim %}
     <div class="row display" ng-cloak>
-        <div class="col-md-8 col-md-push-4">
+        <div class="col-sm-12 col-md-8 col-md-push-4">
             <div class="pull-right">
                 <div class="form-group pull-left search">
                     <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-md-pull-8">
+        <div class="col-sm-12 col-md-4 col-md-pull-8">
             <div class="tagsinput" ng-if="tagFilters.length > 0">
                 <h6>Tags:</h6>
                 <div class="tag" ng-repeat="tag in tagFilters" ng-click="removeTagFilter($index)">

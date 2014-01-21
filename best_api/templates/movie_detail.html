@@ -2,7 +2,7 @@
 
 {% block content %}
     {% verbatim %}
-<h3 ng-cloak>{{movie.title}} {{(movie.year)}}</h3>
+<h3 ng-cloak>{{movie.title}} {{'(' + movie.year + ')')}}</h3>
 <div class="row text-center loading-spinner" ng-if="!movieLoaded" ng-cloak>
     <img src="/static/images/spinner.gif" width="50"/>
 </div>

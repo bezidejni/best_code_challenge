@@ -236,8 +236,11 @@ h4.movie-title a {
   .pagination {
     float: none !important;
     left: 50%;
-    margin: 0 0 0 -168px;
+    margin: 0 0 0 -154px;
     position: relative;
+  }
+  .pagination > li > a, .pagination > li > span {
+    padding-right: 5px 10px;
   }
   .legend {
     text-align: center;
@@ -248,7 +251,7 @@ h4.movie-title a {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .display {
-      height: 100px;
+      height: 101px;
   }
   .movies .movie {
       height: 320px;

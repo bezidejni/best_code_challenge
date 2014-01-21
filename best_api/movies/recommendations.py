@@ -8,9 +8,9 @@ class ItemBasedRecommender(object):
 
     def __init__(self, **kwargs):
         defaults = {
-            'damp_factor': 1,
+            'damp_factor': 25,
             'min_num_of_ratings': 5,
-            'num_of_results': 10,
+            'num_of_results': 20,
             'similar_calculate': 30,
             'similarity_function': 'sim_cosine',
             'training_set_percent': 80,
@@ -23,6 +23,32 @@ class ItemBasedRecommender(object):
         # save parameters from kwargs or use defaults
         for (key, default_val) in defaults.iteritems():
             setattr(self, key, kwargs.get(key, default_val))
+
+    def load_model(self):
+        training_set = cache.get('training_set')
+        if training_set:
+            self.training_set = training_set
+        else:
+            with open('training_data.p', 'rb') as fp:
+                data = pickle.load(fp)
+            self.training_set = data
+            cache.set('training_set', data, 300)
+        similarity_matrix = cache.get('similarity_matrix')
+        if similarity_matrix:
+            self.similarity_matrix = similarity_matrix
+        else:
+            with open('similarity_matrix.p', 'rb') as fp:
+                data = pickle.load(fp)
+            self.similarity_matrix = data
+            cache.set('similarity_matrix', data, 300)
+
+    def save_model_to_disk(self):
+        if self.training_set:
+            with open('training_set.p', 'wb') as fp:
+                pickle.dump(self.training_set, fp)
+        if self.similarity_matrix:
+            with open('similarity_matrix.p', 'wb') as fp:
+                pickle.dump(self.similarity_matrix, fp)
 
     def getRecommendedItems(self, user):
         userRatings = user

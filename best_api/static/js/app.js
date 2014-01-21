@@ -159,7 +159,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	}
 
 	// change the search parameter
-	$scope.changeSearchParam = function(searchParam) {
+	$scope.changeSearchBy = function(searchParam) {
 		$scope.searchBy = searchParam;
 	}
 

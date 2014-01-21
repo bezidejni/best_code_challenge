@@ -224,6 +224,15 @@ h4.movie-title a {
       text-align: center;
       width: 100%;
   }
+  .pagination {
+    float: none !important;
+    left: 50%;
+    margin: 0 0 0 -168px;
+    position: relative;
+  }
+  .legend {
+    text-align: center;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .display {

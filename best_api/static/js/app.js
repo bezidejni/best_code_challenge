@@ -212,10 +212,11 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	}
 
 	// sort function
-	$scope.sort = function() {
+	$scope.sort = function(newPredicate) {
         $scope.pages = [];
         $scope.currentPage = 1;
         $scope.currentPageView = $scope.pages[$scope.currentPage - 1];
+        console.log(newPredicate);
 
         // TODO Don't make canceler global.
         if (typeof canceler !== 'undefined') { canceler.resolve(); }

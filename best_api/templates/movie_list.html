@@ -23,7 +23,7 @@
                         <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate.name}})<span class="caret"></span></button>
                         <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                         <ul class="dropdown-menu dropdown-inverse">
-                            <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="#fakelink" ng-click="predicate = p; sort();">{{p.name}}</a></li>
+                            <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="#fakelink" ng-click="sort(p)">{{p.name}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-toolbar pull-left">

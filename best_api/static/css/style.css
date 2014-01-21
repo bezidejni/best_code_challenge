@@ -205,6 +205,20 @@ h4.movie-title a {
     margin: 100px 0;
 }
 
+
+/* RESPONSIVE STUFF */
+@media (max-width: 767px) {
+  .movies .movie {
+    height: auto;
+    padding-bottom: 0;
+  }
+  .movies .movie .tags {
+      margin-top: 15px;
+      position: relative;
+      text-align: center;
+      width: 100%;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .display {
       height: 100px;
@@ -230,25 +244,4 @@ h4.movie-title a {
   .movies .movie .movie-poster {
     height: 234px;
   }
-}
-
-
-/* RESPONSIVE STUFF */
-@media (max-width: 767px) {
-  .movies .movie {
-    height: auto;
-    padding-bottom: 0;
-  }
-  .movies .movie .tags {
-      margin-top: 15px;
-      position: relative;
-      text-align: center;
-      width: 100%;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-}
-@media (min-width: 1200px) {
 }

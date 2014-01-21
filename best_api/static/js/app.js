@@ -61,6 +61,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 				$scope.movies = data;
 				angular.forEach($scope.movies.results, function(movie, index){
 					if(movie.genre !== '') movie.tags = movie.genre.replace(' ', '').split(',');
+					console.log(movie.tags);
 				});
 				$scope.nextPageUrl = data.next;
 				$scope.pages = $scope.paginate($scope.movies.results, 24);

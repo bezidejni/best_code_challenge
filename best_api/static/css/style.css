@@ -159,6 +159,11 @@ h4.movie-title a {
     margin-left: 120px;
 }
 
+.loading-spinner {
+    height: 50px;
+    margin: 100px 0;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .movies .movie {
       height: 320px;

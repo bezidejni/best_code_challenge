@@ -143,11 +143,20 @@ h4.movie-title a {
 }
 
 .video-js iframe {
+    border: 8px solid #1ABC9C;
+    border-radius: 6px;
     height: 100%;
-    position: absolute;
-    width: 100%;
     left: 0;
+    position: absolute;
     top: 0;
+    width: 100%;
+}
+
+.dl-horizontal dt {
+    width: 100px;
+}
+.dl-horizontal dd {
+    margin-left: 120px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

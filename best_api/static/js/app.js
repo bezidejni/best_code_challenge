@@ -49,6 +49,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	console.log($scope.movieId);
 
 
+
+
 	$scope.getMovies = function(requestData, promise) {
 		Movies.getList(requestData, promise)
 			.success(function(data) {
@@ -63,6 +65,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				$scope.totalNumOfMovies = data.count;
 			});
 	}
+
 	$scope.getFilteredList = function(requestData, promise) {
 		Movies.getList(requestData, promise)
 			.success(function(data) {
@@ -76,6 +79,14 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 				$scope.currentPage = 1;
 				$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 			});
+	}
+
+	$scope.getMovie = function(movieId) {
+		Movies.getMovie(movieId) {
+			.success(function(data) {
+				console.log(data);
+			})
+		}
 	}
 
 	var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};

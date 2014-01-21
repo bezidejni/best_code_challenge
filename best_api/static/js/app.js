@@ -49,7 +49,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		Movies.getMovie(movieId)
 			.success(function(data) {
 				$scope.movie = data;
-				$scope.movieTrailer = $sce.trustAsHtml('<iframe id="player" width="560" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/' + $scope.movie.youtube_video_id + '?rel=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3"></iframe>');
+				$scope.movieTrailer = $sce.trustAsHtml('<iframe id="player" width="560" height="315" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/' + $scope.movie.youtube_video_id + '?rel=0&amp;autohide=1&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3"></iframe>');
 				window.movieLoaded = true;
 			});
 	}

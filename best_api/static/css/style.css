@@ -139,6 +139,7 @@ h4.movie-title a {
     padding-bottom: 56.25%;
     width: 100%;
     position: relative;
+    margin-top: 30px;
 }
 
 .video-js iframe {

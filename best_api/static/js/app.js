@@ -1,5 +1,7 @@
+
 var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize']);
 
+// app configuration
 mevies.config(function($provide, $windowProvider, $httpProvider) {
 	var apiBaseUrl = 'http://movies.jukic.me/api/';
 
@@ -9,6 +11,7 @@ mevies.config(function($provide, $windowProvider, $httpProvider) {
 	$provide.value('CSRF_TOKEN', $windowProvider.$get().csrfToken);
 });
 
+// service for getting movies
 mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL) {
 	return {
 		getList: function(params, promise) {
@@ -36,15 +39,19 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 
 mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', function ($scope, $timeout, $q, $sce, Movies) {
 
+	$scope.pages = [];
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;
-	$scope.listView = false;
 	$scope.tagFilters = [];
-	$scope.pages = [];
+
+	// ordering parameters
 	$scope.predicate = 'year'
 	$scope.reverse = true;
 
 
+	// SCOPE FUNCTIONS
+
+	// a function to get movie details
 	$scope.getMovie = function(movieId) {
 		Movies.getMovie(movieId)
 			.success(function(data) {
@@ -54,6 +61,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			});
 	}
 
+	// a function to get the initial list of movies
 	$scope.getMovies = function(requestData, promise) {
 		Movies.getList(requestData, promise)
 			.success(function(data) {
@@ -70,6 +78,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			});
 	}
 
+	// a function to get a filtered list of movies
 	$scope.getFilteredList = function(requestData, promise) {
 		Movies.getList(requestData, promise)
 			.success(function(data) {
@@ -85,10 +94,13 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			});
 	}
 
+	// check if the page is a movie detail page
+	// and if it is, fetch the movie
 	var path = window.location.pathname.split('/');
 	if (path[1] === 'movie') {
 		$scope.getMovie(path[2].split('-')[0]);
 	}
+	// if not get a list of movies
 	else {
 		var requestData = {
 			page_size: 240, 
@@ -97,6 +109,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.getMovies(requestData);
 	}
 
+	// add genre to filter list
 	$scope.addTagFilter = function(tag) {
 		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) {
 			$scope.tagFilters.push(tag.toLowerCase());
@@ -118,6 +131,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		}
 	}
 
+	// remove genre from filter list
 	$scope.removeTagFilter = function(index) {
 		$scope.tagFilters.splice(index, 1);
 
@@ -137,6 +151,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.getFilteredList(requestData, canceler);
 	}
 
+	// search movies using the API
 	$scope.search = function() {
 		// When the search text field is changed this function is fired. We don't want to fire off
 		// an ajax request with every change. Rather, let's be a little smart about this and fire
@@ -176,6 +191,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		}, 1500);
 	};
 
+	// clear search when X is clicked
 	$scope.clearSearch = function() {
 		$scope.searchMovies = '';
 		$scope.pages = [];
@@ -188,9 +204,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			page: 1,
 			genre: $scope.tagFilters.join(',')
 		};
-		$scope.getMovies(requestData);
+		$scope.getFilteredList(requestData);
 	}
 
+	// sort function
 	$scope.sort = function() {
         $scope.pages = [];
         $scope.currentPage = 1;
@@ -210,9 +227,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		};
 		requestData[$scope.searchBy.toLowerCase()] = $scope.searchMovies;
 
-        $scope.getMovies(requestData, canceler.promise);
+        $scope.getFilteredList(requestData, canceler.promise);
     };
 
+    // pagination function
 	$scope.paginate = function(data, pageSize) {
 		var newArr = [];
 		var pages = [];
@@ -227,6 +245,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		return pages;
 	};
 
+
+	// WATCH EXPRESSIONS
+
+	// watch for value change in currentPage model
 	$scope.$watch('currentPage', function(val) {
 			$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 
@@ -247,5 +269,4 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 				}
 			}
 	});
-
 }]);

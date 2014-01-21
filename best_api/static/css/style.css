@@ -208,6 +208,9 @@ h4.movie-title a {
 
 /* RESPONSIVE STUFF */
 @media (max-width: 767px) {
+  .ordering {
+    width: 100%;
+  }
   .movies .movie {
     height: auto;
     padding-bottom: 0;
@@ -228,6 +231,11 @@ h4.movie-title a {
   }
   .movies .movie .movie-poster {
     height: 224px;
+  }
+  .legend {
+    height: auto;
+    line-height: 23px;
+    margin: 20px 0;
   }
 }
 

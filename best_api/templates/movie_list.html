@@ -5,7 +5,7 @@
     <div class="row display" ng-cloak>
         <div class="col-xs-12 col-md-8 col-md-push-4">
             <div class="pull-right">
-                <div class="form-group pull-left search">
+                <div class="form-group pull-left search col-xs-12">
                     <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
                     <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
                     <div class="dropdown-search">
@@ -18,19 +18,21 @@
                         </ul>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate}})<span class="caret"></span></button>
-                    <span class="dropdown-arrow"></span>
-                    <ul class="dropdown-menu">
-                        <li ng-class="{selected: predicate == 'title'}"><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>
-                        <li ng-class="{selected: predicate == 'year'}"><a href="#fakelink" ng-click="predicate = 'year'; sort();">Year</a></li>
-                        <li ng-class="{selected: predicate == 'rating'}"><a href="#fakelink" ng-click="predicate = 'rating'; sort();">Rating</a></li>
-                    </ul>
-                </div>
-                <div class="btn-toolbar pull-left">
-                    <div class="btn-group">
-                        <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
-                        <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <div class="ordering">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate}})<span class="caret"></span></button>
+                        <span class="dropdown-arrow"></span>
+                        <ul class="dropdown-menu">
+                            <li ng-class="{selected: predicate == 'title'}"><a href="#fakelink" ng-click="predicate = 'title'; sort();">Title</a></li>
+                            <li ng-class="{selected: predicate == 'year'}"><a href="#fakelink" ng-click="predicate = 'year'; sort();">Year</a></li>
+                            <li ng-class="{selected: predicate == 'rating'}"><a href="#fakelink" ng-click="predicate = 'rating'; sort();">Rating</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-toolbar pull-left">
+                        <div class="btn-group">
+                            <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                            <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>

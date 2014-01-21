@@ -67,11 +67,11 @@
     </div>
 
     <div class="row" ng-cloak>
+        <pagination class="pull-right clear-margin" total-items="movies.count" items-per-page="24" max-size="5" page="currentPage"></pagination>
         <div class="col-sm-6 legend" ng-hide="gettingMovies || (!pages.length && !gettingMovies)">
             Showing {{ (24 * (currentPage - 1)) + 1; }} to {{ (24 * (currentPage - 1)) + pages[currentPage - 1].length }} of {{ movies.count }} movies
             <span ng-show="(searchMovies || tagFilters.length !== 0) && !gettingMovies">(filtered from {{ totalNumOfMovies }} total movies)</span>
         </div>
-        <pagination class="pull-right clear-margin" total-items="movies.count" items-per-page="24" max-size="5" page="currentPage"></pagination>
     </div>
     {% endverbatim %}
 {% endblock %}

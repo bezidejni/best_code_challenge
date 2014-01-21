@@ -208,6 +208,9 @@ h4.movie-title a {
 
 /* RESPONSIVE STUFF */
 @media (max-width: 767px) {
+  .display {
+    height: 145px;
+  }
   .ordering {
     width: 100%;
   }

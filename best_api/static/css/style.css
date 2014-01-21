@@ -254,6 +254,9 @@ h4.movie-title a {
     height: auto;
     padding-bottom: 0;
   }
+  .movies .movie .movie-poster {
+    text-align: center;
+  }
   .movies .movie .tags {
       margin-top: 15px;
       position: relative;

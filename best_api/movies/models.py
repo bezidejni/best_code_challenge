@@ -24,6 +24,9 @@ class Movie(models.Model):
     poster = models.ImageField(upload_to='posters', blank=True, max_length=200)
     slug = models.SlugField(max_length=100)
 
+    class Meta:
+        ordering = ['title']
+
     def __unicode__(self):
         return self.title
 
@@ -122,9 +125,10 @@ def get_by_genre(qs, genres):
     Splits the comma separated genre list and filters
     the queryset so it contains all the genres from the list.
     """
-    genres = genres.split(",")
-    for genre in genres:
-        qs = qs.filter(genre__icontains=genre)
+    if genres:
+        genres = genres.split(",")
+        for genre in genres:
+            qs = qs.filter(genre__icontains=genre)
     return qs
 
 

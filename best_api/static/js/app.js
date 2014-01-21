@@ -90,7 +90,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.getMovie(path[2].split('-')[0]);
 	}
 	else {
-		var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};
+		var requestData = {
+			page_size: 240, 
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate
+		};
 		$scope.getMovies(requestData);
 	}
 
@@ -104,12 +107,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			$scope.gettingMovies = true;
 
 			var requestData = {
-				title: $scope.searchMovies,
 				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 				page_size: 240,
 				page: 1,
 				genre: $scope.tagFilters.join(',')
 			};
+			requestData[$scope.searchBy.toLowerCase()] = $scope.searchMovies;
 
 			$scope.getFilteredList(requestData, canceler);
 		}
@@ -124,12 +127,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.gettingMovies = true;
 
 		var requestData = {
-			title: $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')
 		};
+		requestData[$scope.searchBy.toLowerCase()] = $scope.searchMovies;
 
 		$scope.getFilteredList(requestData, canceler);
 	}
@@ -179,7 +182,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		$scope.currentPage = 1;
 		$scope.currentPageView = $scope.pages[$scope.currentPage - 1];
 		$scope.gettingMovies = true;
-		var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};
+		var requestData = {
+			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
+			page_size: 240,
+			page: 1,
+			genre: $scope.tagFilters.join(',')
+		};
 		$scope.getMovies(requestData);
 	}
 
@@ -195,12 +203,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
         $scope.gettingMovies = true;
 
         var requestData = {
-			title: $scope.searchMovies,
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate,
 			page_size: 240,
 			page: 1,
 			genre: $scope.tagFilters.join(',')
 		};
+		requestData[$scope.searchBy.toLowerCase()] = $scope.searchMovies;
 
         $scope.getMovies(requestData, canceler.promise);
     };

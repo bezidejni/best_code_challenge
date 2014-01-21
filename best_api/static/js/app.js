@@ -44,7 +44,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.predicate = 'year'
 	$scope.reverse = true;
 
-	console.log(window.location.pathname.split('/'));
+	var path = window.location.pathname.split('/');
+	if (path[1] === 'movie') $scope.movieId = path[2].split('-')[0];
+	console.log($scope.movieId);
+
 
 	$scope.getMovies = function(requestData, promise) {
 		Movies.getList(requestData, promise)

@@ -5,7 +5,7 @@
     <div class="row display" ng-cloak>
         <div class="col-xs-12 col-md-8 col-md-push-4">
             <div class="pull-right">
-                <div class="form-group pull-left search col-xs-12">
+                <div class="form-group pull-left search">
                     <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
                     <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
                     <div class="dropdown-search">
@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="ordering">
+                <div class="ordering pull-left">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate}})<span class="caret"></span></button>
                         <span class="dropdown-arrow"></span>

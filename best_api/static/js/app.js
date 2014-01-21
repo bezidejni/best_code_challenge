@@ -82,11 +82,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	}
 
 	$scope.getMovie = function(movieId) {
-		Movies.getMovie(movieId) {
+		Movies.getMovie(movieId)
 			.success(function(data) {
 				console.log(data);
-			})
-		}
+			});
 	}
 
 	var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};

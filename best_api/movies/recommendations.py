@@ -1,7 +1,9 @@
 import cPickle as pickle
+import os
 from math import sqrt
 from statsmodels.tools.eval_measures import meanabs, rmse
 from django.core.cache import cache
+from django.conf import settings
 
 
 class ItemBasedRecommender(object):
@@ -9,7 +11,9 @@ class ItemBasedRecommender(object):
     def __init__(self, **kwargs):
         defaults = {
             'damp_factor': 25,
+            'load_from_disk': False,
             'min_num_of_ratings': 5,
+            'model_files_path': settings.BASE_DIR,
             'num_of_results': 20,
             'similar_calculate': 30,
             'similarity_function': 'sim_cosine',
@@ -24,12 +28,16 @@ class ItemBasedRecommender(object):
         for (key, default_val) in defaults.iteritems():
             setattr(self, key, kwargs.get(key, default_val))
 
+        if self.load_from_disk:
+            self.load_model()
+
     def load_model(self):
         training_set = cache.get('training_set')
         if training_set:
             self.training_set = training_set
         else:
-            with open('training_data.p', 'rb') as fp:
+            training_data_path = os.path.join(self.model_files_path, 'training_data.p')
+            with open(training_data_path, 'rb') as fp:
                 data = pickle.load(fp)
             self.training_set = data
             cache.set('training_set', data, 300)
@@ -37,17 +45,20 @@ class ItemBasedRecommender(object):
         if similarity_matrix:
             self.similarity_matrix = similarity_matrix
         else:
-            with open('similarity_matrix.p', 'rb') as fp:
+            similarity_matrix_path = os.path.join(self.model_files_path, 'similarity_matrix.p')
+            with open(similarity_matrix_path, 'rb') as fp:
                 data = pickle.load(fp)
             self.similarity_matrix = data
             cache.set('similarity_matrix', data, 300)
 
     def save_model_to_disk(self):
         if self.training_set:
-            with open('training_set.p', 'wb') as fp:
+            training_data_path = os.path.join(self.model_files_path, 'training_data.p')
+            with open(training_data_path, 'wb') as fp:
                 pickle.dump(self.training_set, fp)
         if self.similarity_matrix:
-            with open('similarity_matrix.p', 'wb') as fp:
+            similarity_matrix_path = os.path.join(self.model_files_path, 'similarity_matrix.p')
+            with open(similarity_matrix_path, 'wb') as fp:
                 pickle.dump(self.similarity_matrix, fp)
 
     def getRecommendedItems(self, user):
@@ -66,15 +77,16 @@ class ItemBasedRecommender(object):
                     continue
                 # Weighted sum of rating times similarity
                 scores.setdefault(item2, 0)
-                print similarity
                 scores[item2] += (similarity * rating)
                 # Sum of all the similarities
                 totalSim.setdefault(item2, 0)
                 totalSim[item2] += similarity
-        # Divide each total score by total weighting to get an average
-        rankings = [((score / totalSim[item]), item) for item, score in scores.items()]
+        # Divide each total score by total weighting to get an average, orders them descending by rating
+        rankings = [(score, item) for item, score in scores.items()]
         rankings.sort(reverse=True)
-        return rankings
+        # gets only the movie IDs from the sorted list
+        movie_ids = [int(ranking[1]) for ranking in rankings]
+        return movie_ids
 
     def evaluate(self):
         pass
@@ -186,7 +198,8 @@ class ItemBasedRecommender(object):
         for line in open(path):
             (user, movieid, rating) = line.split(',')
             self.training_set.setdefault(user, {})
-            self.training_set[user][movies[movieid]] = float(rating)
+            #self.training_set[user][movies[movieid]] = float(rating)
+            self.training_set[user][movieid] = float(rating)
         self.training_set = self.transformPrefs()
 
     def transformPrefs(self):

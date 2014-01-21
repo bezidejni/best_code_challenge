@@ -240,7 +240,7 @@ h4.movie-title a {
     position: relative;
   }
   .pagination > li > a, .pagination > li > span {
-    padding-right: 5px 10px;
+    padding: 5px 10px;
   }
   .legend {
     text-align: center;

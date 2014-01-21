@@ -77,6 +77,10 @@ header .logo-wrapper a {
     right: 0;
 }
 
+.dropdown-menu {
+    border-radius: 6px !important;
+}
+
 .display .form-control {
   padding-right: 30px;
 }

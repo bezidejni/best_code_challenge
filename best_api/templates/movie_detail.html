@@ -23,7 +23,7 @@
 			<dd>{{ movie.plot }}</dd>
 		</dl>
 		<div class="video-js vjs-using-native-controls vjs-controls-enabled vjs-paused vjs-user-inactive" id="vjs_video">
-			<iframe id="player" width="560" height="315" frameborder="0" allowfullscreen="" ng-src="{{movieTrailer}}"></iframe>
+			<iframe ng-if="movieLoaded" id="player" width="560" height="315" frameborder="0" allowfullscreen="" ng-src="{{movieTrailer}}"></iframe>
 			<div class="vjs-control-bar">
 				<div class="vjs-play-control vjs-control " aria-live="polite" tabindex="0" onclick="startStopVideo()">
 					<div class="vjs-control-content"><span class="vjs-control-text">Play</span></div>

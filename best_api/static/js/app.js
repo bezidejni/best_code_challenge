@@ -44,12 +44,13 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 	$scope.predicate = 'year'
 	$scope.reverse = true;
 
-	var path = window.location.pathname.split('/');
-	if (path[1] === 'movie') $scope.movieId = path[2].split('-')[0];
-	console.log($scope.movieId);
 
-
-
+	$scope.getMovie = function(movieId) {
+		Movies.getMovie(movieId)
+			.success(function(data) {
+				console.log(data);
+			});
+	}
 
 	$scope.getMovies = function(requestData, promise) {
 		Movies.getList(requestData, promise)
@@ -81,15 +82,14 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', 'Movies', function 
 			});
 	}
 
-	$scope.getMovie = function(movieId) {
-		Movies.getMovie(movieId)
-			.success(function(data) {
-				console.log(data);
-			});
+	var path = window.location.pathname.split('/');
+	if (path[1] === 'movie') {
+		$scope.getMovie(path[2].split('-')[0]);
 	}
-
-	var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};
-	$scope.getMovies(requestData);
+	else {
+		var requestData = {page_size: 240, ordering: (($scope.reverse) ? '-' : '') + $scope.predicate};
+		$scope.getMovies(requestData);
+	}
 
 	$scope.addTagFilter = function(tag) {
 		if ($scope.tagFilters.indexOf(tag.toLowerCase()) == -1) {

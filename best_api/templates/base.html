@@ -76,15 +76,11 @@
 		<script src="{% static 'js/app.js' %}"></script>
 		<script>
 			$(function() {
+				// activate tooltips
 				$('.btn-toolbar a').tooltip();
-
-				var playing = false;
-				console.log(window.movieLoaded);
-				$(window.movieLoaded).change(function() {
-					console.log(window.movieLoaded);
-				});
 			});
 
+			// get the cookie and remember to buy milk :)
 			function getCookie(name) {
 				var cookieValue = null;
 				if (document.cookie && document.cookie != '') {
@@ -100,6 +96,8 @@
 				}
 				return cookieValue;
 			}
+
+			// get the CSRF token cookie
 			window.csrftoken = getCookie('csrftoken');
 		</script>
 	{% endcompress %}

@@ -43,8 +43,9 @@ class RecommendationsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         for movie_id in movies_seen:
             ratings[movie_id] = 5.0
         if ratings:
-            recommended_movies = recommender.getRecommendedItems(ratings)
+            recommended_movies = recommender.get_recommended_items(ratings)
+            # a little dirty, but 10 sql queries is ok for right now
             movies = [Movie.objects.get(id=mov_id) for mov_id in recommended_movies]
-            return Movie.objects.all()[:10]
+            return movies
         else:
-            return Movie.objects.all()[:10]
+            return Movie.objects.none()

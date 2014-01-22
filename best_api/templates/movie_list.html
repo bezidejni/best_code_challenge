@@ -2,10 +2,10 @@
 
 {% block content %}
     {% verbatim %}
-    <div class="palette-clouds">
+    <div class="palette-clouds recommendations" ng-class="{visible: recommendedMovies.length > 0}">
         <div class="container">
-            <h4 ng-if="recommendedMovies.length > 0">Recommended for you:</h4>
-            <div class="row recommendations" ng-class="{visible: recommendedMovies.length > 0}">
+            <h4>Recommended for you:</h4>
+            <div class="row">
                 <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in recommendedMovies">
                     <div class="movie-poster">
                         <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>

@@ -1,8 +1,7 @@
 ---
 # file: site.yml
 - hosts: server
-  remote_user: vagrant
-  sudo: yes
+  remote_user: root
   roles:
     - common
     - pythondev

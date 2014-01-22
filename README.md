@@ -64,3 +64,7 @@ Nakon oko 150 iteracija, n``ajprecizniji po MAE-u te subjektivno najbolji algori
 MAE za te parametre je bio **0.735322844747**.
 
 Kako bi se izbjegla kalkulacija prilikom svakog učitavanja stranice, ranije izračunati model se učitava ili iz cachea (memcached), ili s diska.
+
+## 5. Pokretanje sustava
+
+Kako bi pokrenuli aplikaciju, potrebno je u komandnoj liniji izvršiti naredbu `service supervisord start`

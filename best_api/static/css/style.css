@@ -63,6 +63,7 @@ header .logo-wrapper a {
   border: medium none;
   height: auto;
   min-height: 41px;
+  margin-bottom: 0;
 }
 
 .display .tagsinput h6 {

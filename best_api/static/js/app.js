@@ -165,6 +165,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		if (typeof canceler !== 'undefined') { canceler.resolve(); }
 		canceler = $q.defer();
 		$scope.gettingMovies = true;
+		$scope.filtering = true;
 
 		var requestData = {
 			ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,

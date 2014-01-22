@@ -55,7 +55,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.tagFilters = [];
 	$scope.recommendedMovies = [];
 
-	$cookies.tesstCookie = 'open';
+	console.log($cookies.recmmendationsOpen);
 
 	// ordering parameters
 	$scope.predicates = [
@@ -286,6 +286,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	// toggle recommendations function
 	$scope.toggleRecommendations = function() {
 		$scope.recommendationsOpen = !$scope.recommendationsOpen;
+		$cookies.recommendationsOpen = ($scope.recommendationsOpen == true) ? 'closed' : 'open';
 	}
 
 

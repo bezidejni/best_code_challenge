@@ -2,7 +2,7 @@
 
 {% block content %}
     {% verbatim %}
-    <div class="palette-clouds recommendations" ng-class="{visible: recommendedMovies.length > 0, closed: recommendedMovies.length > 0 && !recommendationsOpen}">
+    <div class="palette-clouds recommendations" ng-class="{visible: recommendedMovies.length > 0 &&recommendationsOpen, closed: recommendedMovies.length > 0 && !recommendationsOpen}">
         <div class="container" ng-hide="!recommendationsOpen">
             <h4>Recommended for you</h4>
             <div class="row">

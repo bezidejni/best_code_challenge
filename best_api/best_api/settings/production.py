@@ -8,13 +8,6 @@ ALLOWED_HOSTS = [
     '.jukic.me.',
 ]
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'best_api'
-    }
-}
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

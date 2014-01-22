@@ -356,6 +356,10 @@ footer .fa {
     top: 0;
     width: 100px;
   }
+  .ordering {
+    float: right !important;
+    width: auto;
+  }
   .movies .movie {
     height: auto;
     padding-bottom: 0;

@@ -55,7 +55,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.tagFilters = [];
 	$scope.recommendedMovies = [];
 
-	if (angular.isUndefined($cookies.recommendationsOpen)) $cookies.recommendationsOpen = 'open';
+	if (angular.isUndefined($cookies.recommendationsOpen)) $scope.setCookies('recommendationsOpen', true);
 	$scope.recommendationsOpen = ($cookies.recommendationsOpen == 'open') ? true : false;
 
 	// ordering parameters
@@ -69,7 +69,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 
 	$scope.searchParams = ['Title', 'Actors', 'Director'];
 	$scope.searchBy = $scope.searchParams[0];
-	console.log($document);
 
 
 	// SCOPE FUNCTIONS
@@ -290,13 +289,17 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	// toggle recommendations function
 	$scope.toggleRecommendations = function() {
 		$scope.recommendationsOpen = !$scope.recommendationsOpen;
+        $scope.setCookies('recommendationsOpen', $scope.recommendationsOpen);
+	}
 
-		var name = 'recommendationsOpen';
-		var value = ($scope.recommendationsOpen) ? 'open' : 'closed';
+	// set cookie using regular javascript because $cookies doesn't
+	// support setting a path for the cookie
+	$scope.setCookie = function(name, isOpen) {
+		var value = (isOpen) ? 'open' : 'closed';
 		var date = new Date();
         date.setTime(date.getTime()+(24*60*60*1000));
         var expires = "; expires="+date.toGMTString();
-        window.document.cookie = name+"="+value+expires+"; path=/";
+        $document.cookie = name+"="+value+expires+"; path=/";
 	}
 
 

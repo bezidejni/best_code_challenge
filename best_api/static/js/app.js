@@ -63,7 +63,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	$scope.predicate = $scope.predicates[0];
 	$scope.reverse = true;
 
-	$scope.searchParams = ['Title', 'Actor', 'Director'];
+	$scope.searchParams = ['Title', 'Actors', 'Director'];
 	$scope.searchBy = $scope.searchParams[0];
 
 

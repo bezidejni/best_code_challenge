@@ -313,14 +313,14 @@ footer .fa {
 .carousel-control.right {
   right: -46px;
 }
-.icon-prev {
+.carousel-control .icon-prev {
   font-size: 60px;
   height: 60px;
   line-height: 66px;
   margin-left: -13px;
   margin-top: -34px;
 }
-.icon-next {
+.carousel-control .icon-next {
   font-size: 60px;
   height: 60px;
   line-height: 66px;
@@ -430,6 +430,11 @@ footer .fa {
   .footer-banner {
     padding: 0 12px 30px;
     margin-left: 0;
+  }
+  .carousel-control.left {
+    left: 0;
+  }.carousel-control.right {
+    right: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {

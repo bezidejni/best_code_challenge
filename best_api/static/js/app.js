@@ -96,6 +96,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 		Movies.getList(requestData, promise)
 			.success(function(data) {
 				$scope.gettingMovies = false;
+				$scope.filtering = false;
 				$scope.movies = data;
 				angular.forEach($scope.movies.results, function(movie, index){
 					if(movie.genre !== '') movie.tags = movie.genre.replace(/ /g,'').split(',');
@@ -140,6 +141,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 			if (typeof canceler !== 'undefined') { canceler.resolve(); }
 			canceler = $q.defer();
 			$scope.gettingMovies = true;
+			$scope.filtering = true;
 
 			var requestData = {
 				ordering: (($scope.reverse) ? '-' : '') + $scope.predicate.parameter,

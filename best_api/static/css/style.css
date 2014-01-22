@@ -118,6 +118,11 @@ header .logo-wrapper a {
   margin: -2px 1px 2px;
 }
 
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
 h4.movie-title {
   font-size: 16px;
   margin: 10px 0 5px;
@@ -130,6 +135,31 @@ h4.movie-title a {
 
 .movies {
   margin-top: 20px;
+}
+
+.movies .overlay {
+  background: #ECF0F1;
+  display: none;
+  height: 100%;
+  left: 0;
+  margin-top: -9px;
+  position: absolute;
+  width: 100%;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 500ms ease-out 1s;
+  -moz-transition: opacity 500ms ease-out 1s;
+  -o-transition: opacity 500ms ease-out 1s;
+  -ms-transition: opacity 500ms ease-out 1s;
+  transition: opacity 500ms ease-out 1s;
+}
+
+.movies .overlay.visible {
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+  z-index: 1;
 }
 
 .movies .movie {

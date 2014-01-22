@@ -259,9 +259,10 @@ class SlopeOne(object):
                 freqs.setdefault(diffitem, 0)
                 preds[diffitem] += freq * (diffratings[item] + rating)
                 freqs[diffitem] += freq
-        lista = {item: (value / freqs[item])
-                 for item, value in preds.iteritems()
-                 if item not in userprefs and freqs[item] > 0}
+        lista = {}
+        for item, value in preds.iteritems():
+            if item not in userprefs and freqs[item] > 0:
+                lista[item] = value / freqs[item]
         return lista
 
     def load_training_data(self, userdata):

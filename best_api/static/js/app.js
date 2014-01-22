@@ -3,7 +3,8 @@ var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize']);
 
 // app configuration
 mevies.config(function($provide, $windowProvider, $httpProvider) {
-	var apiBaseUrl = 'http://movies.jukic.me/api/';
+	location = window.location;
+	var apiBaseUrl = location.protocol + '//' + location.hostname + '/api/';
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

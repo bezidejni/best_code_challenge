@@ -30,6 +30,7 @@ header .logo-wrapper a {
 }
 .recommendations {
   max-height: 0;
+  position: relative;
   overflow: hidden;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -42,7 +43,7 @@ header .logo-wrapper a {
   padding-bottom: 0;
 }
 .recommendations.visible {
-  padding-bottom: 20px;
+  padding-bottom: 45px;
   max-height: 445px;
 }
 .close-recommendations {
@@ -51,6 +52,8 @@ header .logo-wrapper a {
   text-align: center;
   width: 100%;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
 }
 .recommendations .movie {
   width: 20%;

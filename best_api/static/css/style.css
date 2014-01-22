@@ -329,6 +329,9 @@ footer .fa {
   margin-top: -29px;
   width: 55px;
 }
+.carousel-indicators {
+  display: none !important;
+}
 
 /* RESPONSIVE STUFF */
 @media (max-width: 767px) {

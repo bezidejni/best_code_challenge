@@ -6,12 +6,16 @@
         <div class="container" ng-class="{'hide-this': !recommendationsOpen || recommendedMovies.length == 0}">
             <h4>Recommended for you</h4>
             <div class="row">
-                <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in recommendedMovies">
-                    <div class="movie-poster">
-                        <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" alt="{{ movie.title }} poster" class="img-thumbnail img-responsive" /></a>
-                    </div>
-                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} [{{movie.year}}]</a></h4>
-                </div>
+                <carousel interval="myInterval">
+                    <slide ng-repeat="slide in slides" active="slide.active">
+                        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in slide">
+                            <div class="movie-poster">
+                                <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" alt="{{ movie.title }} poster" class="img-thumbnail img-responsive" /></a>
+                            </div>
+                            <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} [{{movie.year}}]</a></h4>
+                        </div>
+                    </slide>
+                </carousel>
             </div>
         </div>
         <div class="close-recommendations">

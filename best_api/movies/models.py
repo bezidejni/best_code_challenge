@@ -152,8 +152,10 @@ class MovieFilter(django_filters.FilterSet):
     title, genre or year.
     """
     title = django_filters.CharFilter(name="title", lookup_type="icontains")
+    actors = django_filters.CharFilter(name="actors", lookup_type="icontains")
+    director = django_filters.CharFilter(name="director", lookup_type="icontains")
     genre = django_filters.CharFilter(name="genre", action=get_by_genre)
 
     class Meta:
         model = Movie
-        fields = ['title', 'genre', 'year']
+        fields = ['title', 'genre', 'year', 'actors', 'director']

@@ -1,11 +1,13 @@
 # Mevies: Movies for me documentation
 
+**Repozitorij se nalazi ovdje: [Best-API](https://bitbucket.org/chojux/best-api/overview)**
+
 ## 1. Arhitektura sustava
-Na backend strani, Mevies je izveden kao Django aplikacija koji se izvršava na Linux serveru i spaja se na bazu podaka PostgreSQL. Backend je zapravo manje-više REST API baziran na Django Rest Frameworku koji izlaže podatke o filmovima i preporukama.
+Na backend strani, Mevies je izveden kao [Django](https://www.djangoproject.com/) aplikacija koji se izvršava na Linux serveru i spaja se na bazu podaka [PostgreSQL](http://www.postgresql.org/). Backend je zapravo manje-više REST API baziran na [Django Rest Frameworku](http://www.django-rest-framework.org/) koji izlaže podatke o filmovima i preporukama.
 
-Na frontend strani nalazi se AngularJS aplikacija koja komunicira s API-jem te prikazuje podatke u obliku uređene HTML stranice.
+Na frontend strani nalazi se [AngularJS](http://angularjs.org/) aplikacija koja komunicira s API-jem te prikazuje podatke u obliku uređene HTML stranice.
 
-U `deploy` folderu nalaze se ansible skripte i Vagrantfile za provizioniranje servera.
+U `deploy` folderu nalaze se [Ansible](http://docs.ansible.com/index.html) skripte i [Vagrantfile](http://www.vagrantup.com/) za provizioniranje servera.
 
 ## 2. Django aplikacija
 U `/opt/app` nalazi se git repozitorij koji sadrži aplikaciju. Sam Django projekt nalazi se u `/opt/app/best_api`, u istom folderu se nalazi i requirements.txt datoteka s popisom potrebnim python paketa. Sama organizacija projekta je standardna u Django svijetu, ali za neupućene:

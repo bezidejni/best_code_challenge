@@ -298,6 +298,35 @@ footer .fa {
     margin: 0 5px;
 }
 
+.carousel-control {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border-radius: 33px;
+  cursor: pointer;
+  height: 55px;
+  margin-top: -56px;
+  top: 50%;
+  width: 55px;
+}
+.carousel-control.left {
+  left: -46px;
+}
+.carousel-control.right {
+  right: -46px;
+}
+.icon-prev {
+  font-size: 60px;
+  height: 60px;
+  line-height: 66px;
+  margin-left: -13px;
+  margin-top: -34px;
+}
+.icon-next {
+  font-size: 60px;
+  height: 60px;
+  line-height: 66px;
+  margin-right: -13px;
+  margin-top: -34px;
+}
 
 /* RESPONSIVE STUFF */
 @media (max-width: 767px) {

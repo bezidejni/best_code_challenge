@@ -3,8 +3,9 @@ var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize']);
 
 // app configuration
 mevies.config(function($provide, $windowProvider, $httpProvider) {
-	location = window.location;
-	var apiBaseUrl = location.protocol + '//' + location.hostname + '/api/';
+	protocol = window.location.protocol;
+	hostname = window.location.hostname;
+	var apiBaseUrl = protocol + '//' + hostname + '/api/';
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

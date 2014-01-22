@@ -391,7 +391,6 @@ footer .fa {
     padding-bottom: 56.25%;
     width: 100%;
   }
-
   .video-js iframe {
     border: 5px solid #1ABC9C;
   }
@@ -414,6 +413,10 @@ footer .fa {
     height: auto;
     line-height: 23px;
     margin: 20px 0;
+  }
+  .video-js {
+    padding-bottom: 56.25%;
+    width: 100%;
   }
   .footer-banner {
     padding: 0 12px 30px;

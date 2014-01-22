@@ -26,6 +26,12 @@ header .logo-wrapper a {
   width: 100%;
 }
 
+.recommendations {
+}
+.recommendations .movie {
+  width: 20%;
+}
+
 .display {
   margin-top: 15px;
   height: 45px;

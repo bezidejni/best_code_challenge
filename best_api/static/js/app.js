@@ -69,6 +69,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 
 	$scope.searchParams = ['Title', 'Actors', 'Director'];
 	$scope.searchBy = $scope.searchParams[0];
+	console.log($document);
 
 
 	// SCOPE FUNCTIONS
@@ -289,7 +290,12 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	// toggle recommendations function
 	$scope.toggleRecommendations = function() {
 		$scope.recommendationsOpen = !$scope.recommendationsOpen;
-		$cookies.recommendationsOpen = ($scope.recommendationsOpen) ? 'open' : 'closed';
+
+		var value = ($scope.recommendationsOpen) ? 'open' : 'closed';
+		var date = new Date();
+        date.setTime(date.getTime()+(24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+        window.document.cookie = name+"="+value+expires+"; path=/";
 	}
 
 

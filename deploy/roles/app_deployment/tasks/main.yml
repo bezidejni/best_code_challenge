@@ -16,6 +16,9 @@
 - name: Install app requirements
   pip: requirements='{{git_repo_dir}}/requirements.txt' virtualenv=/opt/venv extra_args="--allow-all-external"
 
+- name: Install statsmodels
+  pip: name=statsmodels virtualenv=/opt/venv
+
 - name: Run collectstatic
   django_manage: >
       command=collectstatic

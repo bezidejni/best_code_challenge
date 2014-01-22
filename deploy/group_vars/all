@@ -5,7 +5,7 @@ django_static_dir: "{{django_project_dir}}/collected_static"
 server_name: movies.jukic.me
 listen: 80
 media_root: "{{django_project_dir}}/media"
-postgres_user: best_api
+postgres_user: api
 postgres_password: md55e49e8c2eabab7bb75681f3f913d1974
 chdir: /home/vagrant/mysite/mysite
 home: /home/vagrant/mysite/venv

@@ -14,7 +14,11 @@
     - libxslt
     - libxslt-devel
     - gcc
+    - gcc-c++
     - blas
+    - blas-devel
+    - lapack
+    - lapack-devel
 
 - name: Disable iptables
   service: name=iptables state=stopped

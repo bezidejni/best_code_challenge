@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure uwsgi is at the desired version
-  pip: name=uwsgi state=latest virtualenv=/opt/venv
+  pip: name=uwsgi state=latest
 
 - name: Ensure runs with the latest uwsgi configuration file
   template: src=uwsgi.ini dest=/opt/

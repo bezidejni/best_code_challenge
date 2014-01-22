@@ -38,7 +38,10 @@ class RecommendationsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     def get_queryset(self):
         recommender = ItemBasedRecommender(load_from_disk=True)
         movies_seen = self.request.session.get('movies_seen', [])
-        ratings = {movie_id: 5.0 for movie_id in movies_seen}
+        # servers runs python 2.6 and doesn't support dictionary comprehensions
+        ratings = {}
+        for movie_id in movies_seen:
+            ratings[movie_id] = 5.0
         if ratings:
             recommended_movies = recommender.getRecommendedItems(ratings)
             return Movie.objects.filter(id__in=recommended_movies)

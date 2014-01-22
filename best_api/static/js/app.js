@@ -291,6 +291,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.toggleRecommendations = function() {
 		$scope.recommendationsOpen = !$scope.recommendationsOpen;
 
+		var name = 'recommendationsOpen';
 		var value = ($scope.recommendationsOpen) ? 'open' : 'closed';
 		var date = new Date();
         date.setTime(date.getTime()+(24*60*60*1000));

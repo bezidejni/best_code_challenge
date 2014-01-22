@@ -10,7 +10,7 @@
                     <div class="movie-poster">
                         <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>
                     </div>
-                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} ({{movie.year}})</a></h4>
+                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} [{{movie.year}}]</a></h4>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     <div class="movie-poster">
                         <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>
                     </div>
-                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} ({{movie.year}})</a></h4>
+                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} [{{movie.year}}]</a></h4>
                     <div class="tags" ng-if="movie.tags.length != 0">
                         <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
                     </div>

@@ -3,6 +3,8 @@ var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize']);
 
 // app configuration
 mevies.config(function($provide, $windowProvider, $httpProvider) {
+	// construct API url based on current server because BCC requires
+	// both the API and the website to be on the same server
 	protocol = window.location.protocol;
 	hostname = window.location.hostname;
 	var apiBaseUrl = protocol + '//' + hostname + '/api/';

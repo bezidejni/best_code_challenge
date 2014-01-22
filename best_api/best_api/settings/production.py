@@ -1,11 +1,13 @@
 import os
 from .base import *
 
-DEBUG = True
+DEBUG = False
+COMPRESS_ENABLED = False
 
 ALLOWED_HOSTS = [
     '.jukic.me',
     '.jukic.me.',
+    '*',
 ]
 
 CACHES = {

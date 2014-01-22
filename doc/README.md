@@ -2,6 +2,8 @@
 
 **Repozitorij se nalazi ovdje: [Best-API](https://bitbucket.org/chojux/best-api/overview)**
 
+**NAPOMENA: Dupli filmovi koji se pojavljuju u web sučelju su posljedice dupliciranja u originalnoj bazi podataka**
+
 ## 1. Arhitektura sustava
 Na backend strani, Mevies je izveden kao [Django](https://www.djangoproject.com/) aplikacija koji se izvršava na Linux serveru i spaja se na bazu podaka [PostgreSQL](http://www.postgresql.org/). Backend je zapravo manje-više REST API baziran na [Django Rest Frameworku](http://www.django-rest-framework.org/) koji izlaže podatke o filmovima i preporukama.
 

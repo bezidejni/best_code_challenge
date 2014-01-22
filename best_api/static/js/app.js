@@ -47,7 +47,7 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	};
 }]);
 
-mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies', 'Movies', function ($scope, $timeout, $q, $sce, $cookies, Movies) {
+mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies', '$document', 'Movies', function ($scope, $timeout, $q, $sce, $cookies, $document, Movies) {
 
 	$scope.pages = [];
 	$scope.currentPage = 1;

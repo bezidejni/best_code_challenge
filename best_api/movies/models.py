@@ -73,13 +73,13 @@ class Movie(models.Model):
             director = movie.get("director")
             if director:
                 self.director = director[0].get("name")
-            writers = movie.get("writers")
+            writers = movie.get("writer")
             if writers:
                 writers = [writer.get("name") for writer in writers]
                 self.writers = ", ".join(writers)
-            actors = movie.get("actors")[:10]
+            actors = movie.get("actors")
             if actors:
-                actors = [actor.get("name") for actor in actors]
+                actors = [actor.get("name") for actor in actors[:10]]
                 self.actors = ", ".join(actors)
             runtimes = movie.get("runtimes")
             if runtimes:

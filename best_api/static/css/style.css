@@ -147,11 +147,11 @@ h4.movie-title a {
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;
-  -webkit-transition: opacity 500ms ease-out 1s;
-  -moz-transition: opacity 500ms ease-out 1s;
-  -o-transition: opacity 500ms ease-out 1s;
-  -ms-transition: opacity 500ms ease-out 1s;
-  transition: opacity 500ms ease-out 1s;
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  -ms-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .movies .overlay.visible {

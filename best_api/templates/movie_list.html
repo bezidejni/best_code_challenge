@@ -35,7 +35,7 @@
                                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-search">{{searchBy}}<span class="caret"></span></button>
                                 <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                                 <ul class="dropdown-menu dropdown-inverse">
-                                    <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="#fakelink" ng-click="changeSearchBy(searchParam)">{{searchParam}}</a></li>
+                                    <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="" ng-click="changeSearchBy(searchParam)">{{searchParam}}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -44,13 +44,13 @@
                                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate.name}})<span class="caret"></span></button>
                                 <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                                 <ul class="dropdown-menu dropdown-inverse">
-                                    <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="#fakelink" ng-click="sort(p)">{{p.name}}</a></li>
+                                    <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="" ng-click="sort(p)">{{p.name}}</a></li>
                                 </ul>
                             </div>
                             <div class="btn-toolbar pull-left">
                                 <div class="btn-group">
-                                    <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
-                                    <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                                    <a href="" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                                    <a href="" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
                                 </div>
                             </div>
                         </div>

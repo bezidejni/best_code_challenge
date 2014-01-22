@@ -39,6 +39,7 @@ header .logo-wrapper a {
 }
 .recommendations.closed {
   max-height: 42px;
+  padding-bottom: 0;
 }
 .recommendations.visible {
   padding-bottom: 20px;

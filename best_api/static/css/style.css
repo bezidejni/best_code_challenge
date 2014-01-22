@@ -299,7 +299,7 @@ footer .fa {
 }
 
 .carousel-control {
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: #bdc3c7 !important;
   border-radius: 33px;
   cursor: pointer;
   height: 55px;
@@ -315,17 +315,19 @@ footer .fa {
 }
 .carousel-control .icon-prev {
   font-size: 60px;
-  height: 60px;
-  line-height: 66px;
-  margin-left: -13px;
-  margin-top: -34px;
+  height: 55px;
+  line-height: 55px;
+  margin-left: -29px;
+  margin-top: -29px;
+  width: 55px;
 }
 .carousel-control .icon-next {
   font-size: 60px;
-  height: 60px;
-  line-height: 66px;
-  margin-right: -13px;
-  margin-top: -34px;
+  height: 55px;
+  line-height: 55px;
+  margin-right: -29px;
+  margin-top: -29px;
+  width: 55px;
 }
 
 /* RESPONSIVE STUFF */

@@ -122,6 +122,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 		Movies.getRecommendations()
 			.success(function(data) {
 				$scope.recommendedMovies = data.results;
+				$scope.recommendedMovies.push.apply(data.results);
+				console.log($scope.recommendedMovies);
 				$scope.slides = $scope.paginate($scope.recommendedMovies, 5);
 			});
 	}

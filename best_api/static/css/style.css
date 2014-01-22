@@ -29,7 +29,8 @@ header .logo-wrapper a {
     color: #34495E;
 }
 .recommendations {
-  height: 0;
+  max-height: 0;
+  overflow: hidden;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -38,6 +39,7 @@ header .logo-wrapper a {
 }
 .recommendations.visible {
   padding-bottom: 20px;
+  max-height: 420px;
 }
 .recommendations .movie {
   width: 20%;

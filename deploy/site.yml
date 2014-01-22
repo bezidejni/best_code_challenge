@@ -8,5 +8,6 @@
     - nginx
     - postgresql
     - uwsgi
+    - memcached
     - app_deployment
     - supervisor

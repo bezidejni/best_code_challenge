@@ -28,7 +28,7 @@
 			<div class="col-sm-4 col-md-3">
 				<img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" alt="{{ movie.title }} poster" class="img-thumbnail">
 			</div>
-			<div class="col-sm-8 col-md-6 movie-details">
+			<div class="col-sm-8 col-md-9 movie-details">
 				<dl class="dl-horizontal">
 					<dt>Genre</dt>
 					<dd>{{ movie.genre }}</dd>
@@ -50,19 +50,6 @@
 				<div class="video-js vjs-using-native-controls vjs-controls-enabled vjs-paused vjs-user-inactive" id="vjs_video">
 					<p ng-bind-html="movieTrailer"></p>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<h5>Recommendations</h5>
-				<div class="container">
-		            <div class="row">
-		                <div class="col-xs-12 movie" ng-repeat="movie in recommendedMovies">
-		                    <div class="movie-poster">
-		                        <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" alt="{{ movie.title }} poster" class="img-thumbnail img-responsive" /></a>
-		                    </div>
-		                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} [{{movie.year}}]</a></h4>
-		                </div>
-		            </div>
-		        </div>
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,8 @@
     - libjpeg-turbo-devel
     - libxslt
     - libxslt-devel
+    - gcc
+    - blas
 
 - name: Disable iptables
   service: name=iptables state=stopped

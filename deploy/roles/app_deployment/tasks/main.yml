@@ -7,6 +7,12 @@
 - name: Clear pip build dir
   file: path=/opt/venv/build state=absent
 
+- name: Install numpy and scipy
+  pip: name={{item}} virtualenv=/opt/venv
+  with_items:
+    - numpy
+    - scipy
+
 - name: Install app requirements
   pip: requirements='{{git_repo_dir}}/requirements.txt' virtualenv=/opt/venv extra_args="--allow-all-external"
 

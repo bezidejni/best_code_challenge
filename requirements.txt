@@ -21,12 +21,16 @@ google-api-python-client==1.2
 httplib2==0.8
 ipython==1.1.0
 lxml==3.2.5
+numpy==1.8.0
 omdb==0.1.0
+pandas==0.13.0
+patsy==0.2.1
 pbr==0.5.23
 ply==3.4
 psycopg2==2.5.2
 python-memcached==1.53
 requests==2.2.0
+scipy==0.13.2
 six==1.5.2
 sqlalchemy-migrate==0.8.2
 sqlparse==0.1.10

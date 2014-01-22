@@ -264,10 +264,10 @@ h4.movie-title a {
 
 .video-js {
     height: 0;
-    padding-bottom: 56.25%;
-    width: 100%;
+    padding-bottom: 45%;
+    width: 80%;
     position: relative;
-    margin-top: 30px;
+    margin-top: 30px auto;
 }
 
 .video-js iframe {
@@ -383,6 +383,17 @@ footer .fa {
     height: auto;
     line-height: 23px;
     margin: 20px 0;
+  }
+  .dl-horizontal dd {
+      margin-left: 110px;
+  }
+  .video-js {
+    padding-bottom: 56.25%;
+    width: 100%;
+  }
+
+  .video-js iframe {
+    border: 5px solid #1ABC9C;
   }
   .footer-banner {
     padding: 0 12px 30px;

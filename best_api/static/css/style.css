@@ -46,8 +46,9 @@ header .logo-wrapper a {
 }
 
 .display {
+  height: auto;
   margin-top: 15px;
-  height: 45px;
+  min-height: 45px;
 }
 
 .display .col-md-4 {
@@ -59,8 +60,9 @@ header .logo-wrapper a {
 }
 
 .display .tagsinput {
-    border: none;
-  height: 41px;
+  border: medium none;
+  height: auto;
+  min-height: 41px;
 }
 
 .display .tagsinput h6 {

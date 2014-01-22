@@ -2,83 +2,89 @@
 
 {% block content %}
     {% verbatim %}
-    <div class="row recommendations" ng-if="recommendedMovies.length > 0">
-        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in recommendedMovies">
-            <div class="movie-poster">
-                <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>
-            </div>
-            <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} ({{movie.year}})</a></h4>
-            <div class="tags" ng-if="movie.tags.length != 0">
-                <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
+    <div class="palette-cloud">
+        <div class="container">
+            <div class="row recommendations" ng-if="recommendedMovies.length > 0">
+                <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in recommendedMovies">
+                    <div class="movie-poster">
+                        <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>
+                    </div>
+                    <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} ({{movie.year}})</a></h4>
+                    <div class="tags" ng-if="movie.tags.length != 0">
+                        <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row display" ng-cloak>
-        <div class="col-xs-12 col-md-8 col-md-push-4">
-            <div class="pull-right">
-                <div class="form-group pull-left search">
-                    <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
-                    <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
-                    <div class="dropdown-search">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-search">{{searchBy}}<span class="caret"></span></button>
-                        <span class="dropdown-arrow dropdown-arrow-inverse"></span>
-                        <ul class="dropdown-menu dropdown-inverse">
-                            <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="#fakelink" ng-click="changeSearchBy(searchParam)">{{searchParam}}</a></li>
-                        </ul>
+    <div class="container"
+        <div class="row display" ng-cloak>
+            <div class="col-xs-12 col-md-8 col-md-push-4">
+                <div class="pull-right">
+                    <div class="form-group pull-left search">
+                        <input class="form-control" type="text" placeholder="Search movies" value="" ng-model="searchMovies" ng-change="search()">
+                        <span class="fui-cross clear-search" ng-if="searchMovies" ng-click="clearSearch()"></span>
+                        <div class="dropdown-search">
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-search">{{searchBy}}<span class="caret"></span></button>
+                            <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+                            <ul class="dropdown-menu dropdown-inverse">
+                                <li ng-repeat="searchParam in searchParams" ng-class="{selected: searchBy == searchParam}"><a href="#fakelink" ng-click="changeSearchBy(searchParam)">{{searchParam}}</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="ordering pull-left">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate.name}})<span class="caret"></span></button>
-                        <span class="dropdown-arrow dropdown-arrow-inverse"></span>
-                        <ul class="dropdown-menu dropdown-inverse">
-                            <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="#fakelink" ng-click="sort(p)">{{p.name}}</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-toolbar pull-left">
-                        <div class="btn-group">
-                            <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
-                            <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                    <div class="ordering pull-left">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Order by ({{predicate.name}})<span class="caret"></span></button>
+                            <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+                            <ul class="dropdown-menu dropdown-inverse">
+                                <li ng-repeat="p in predicates" ng-class="{selected: p.name == predicate.name}"><a href="#fakelink" ng-click="sort(p)">{{p.name}}</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-toolbar pull-left">
+                            <div class="btn-group">
+                                <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order descending" class="btn btn-primary" ng-class="{ active: reverse }" ng-click="reverse = true; sort();"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                                <a href="#fakelink" data-container='body' data-placement="top" data-toggle="tooltip" data-original-title="Order ascending" class="btn btn-primary" ng-class="{ active: !reverse }" ng-click="reverse = false; sort();"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-8">
-            <div class="tagsinput" ng-if="tagFilters.length > 0">
-                <h6>Tags:</h6>
-                <div class="tag" ng-repeat="tag in tagFilters" ng-click="removeTagFilter($index)">
-                    <span>{{tag}}</span>
-                    <a class="tagsinput-remove-link"></a>
+            <div class="col-xs-12 col-md-4 col-md-pull-8">
+                <div class="tagsinput" ng-if="tagFilters.length > 0">
+                    <h6>Tags:</h6>
+                    <div class="tag" ng-repeat="tag in tagFilters" ng-click="removeTagFilter($index)">
+                        <span>{{tag}}</span>
+                        <a class="tagsinput-remove-link"></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row movies" ng-show="pages.length > 0" ng-cloak>
-        <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in currentPageView">
-            <div class="movie-poster">
-                <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>
-            </div>
-            <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} ({{movie.year}})</a></h4>
-            <div class="tags" ng-if="movie.tags.length != 0">
-                <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
+        <div class="row movies" ng-show="pages.length > 0" ng-cloak>
+            <div class="col-sm-3 col-md-2 movie" ng-repeat="movie in currentPageView">
+                <div class="movie-poster">
+                    <a href="/movie/{{movie.id}}-{{movie.slug}}"><img ng-src="{{movie.poster || '/static/images/default_poster.png'}}" class="img-thumbnail img-responsive" /></a>
+                </div>
+                <h4 class="movie-title"><a href="/movie/{{movie.id}}-{{movie.slug}}">{{movie.title}} ({{movie.year}})</a></h4>
+                <div class="tags" ng-if="movie.tags.length != 0">
+                    <div class="tag" ng-repeat="tag in movie.tags" ng-click="addTagFilter(tag)">{{tag.toLowerCase()}}</div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row text-center loading-spinner" ng-show="!pages[currentPage - 1] && gettingMovies" ng-cloak>
-        <img src="/static/images/spinner.gif" width="50"/>
-    </div>
-    <div class="row text-center" ng-show="!pages.length && !gettingMovies" ng-cloak>
-        No matching movies found.
-    </div>
+        <div class="row text-center loading-spinner" ng-show="!pages[currentPage - 1] && gettingMovies" ng-cloak>
+            <img src="/static/images/spinner.gif" width="50"/>
+        </div>
+        <div class="row text-center" ng-show="!pages.length && !gettingMovies" ng-cloak>
+            No matching movies found.
+        </div>
 
-    <div class="row" ng-cloak>
-        <pagination class="pull-right clear-margin" total-items="movies.count" items-per-page="24" max-size="5" page="currentPage"></pagination>
-        <div class="col-sm-6 legend" ng-hide="(gettingMovies && !tagFilters.length !== 0) || (!pages.length && !gettingMovies)">
-            Showing {{ (24 * (currentPage - 1)) + 1; }} to {{ (24 * (currentPage - 1)) + pages[currentPage - 1].length }} of {{ movies.count }} movies
-            <span ng-show="(searchMovies || tagFilters.length !== 0) && !gettingMovies">(filtered from {{ totalNumOfMovies }} total movies)</span>
+        <div class="row" ng-cloak>
+            <pagination class="pull-right clear-margin" total-items="movies.count" items-per-page="24" max-size="5" page="currentPage"></pagination>
+            <div class="col-sm-6 legend" ng-hide="(gettingMovies && !tagFilters.length !== 0) || (!pages.length && !gettingMovies)">
+                Showing {{ (24 * (currentPage - 1)) + 1; }} to {{ (24 * (currentPage - 1)) + pages[currentPage - 1].length }} of {{ movies.count }} movies
+                <span ng-show="(searchMovies || tagFilters.length !== 0) && !gettingMovies">(filtered from {{ totalNumOfMovies }} total movies)</span>
+            </div>
         </div>
     </div>
     {% endverbatim %}

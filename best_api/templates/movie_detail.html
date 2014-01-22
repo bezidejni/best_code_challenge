@@ -2,40 +2,41 @@
 
 {% block content %}
     {% verbatim %}
-<h3 ng-hide="!movieLoaded" ng-cloak>{{movie.title}} ({{movie.year}})</h3>
-<div class="row text-center loading-spinner" ng-if="!movieLoaded" ng-cloak>
-    <img src="/static/images/spinner.gif" width="50"/>
-</div>
-<div class="row" ng-if="movieLoaded" ng-cloak>
-	<div class="col-sm-4 col-md-3">
-		<img ng-src="{{ movie.poster }}" alt="{{ movie.title }} poster image" class="img-thumbnail">
-	</div>
-	<div class="col-sm-8 col-md-6 movie-details">
-		<dl class="dl-horizontal">
-			<dt>Genre</dt>
-			<dd>{{ movie.genre }}</dd>
-			<dt>Runtime</dt>
-			<dd>{{ movie.runtime }} min</dd>
-			<dt>IMDb rating</dt>
-			<dd>{{ movie.imdb_rating }}</dd>
-			<dt>Year</dt>
-			<dd>{{ movie.year }}</dd>
-			<dt>Plot</dt>
-			<dd>{{ movie.plot }}</dd>
-		</dl>
-		<div class="video-js vjs-using-native-controls vjs-controls-enabled vjs-paused vjs-user-inactive" id="vjs_video">
-			<p ng-bind-html="movieTrailer"></p>
+    <div class="container">
+		<h3 ng-hide="!movieLoaded" ng-cloak>{{movie.title}} ({{movie.year}})</h3>
+		<div class="row text-center loading-spinner" ng-if="!movieLoaded" ng-cloak>
+		    <img src="/static/images/spinner.gif" width="50"/>
 		</div>
-	</div>
-	<div class="col-md-3">
-		<h5>Recommendations</h5>
-		<ul>
-			<li>The Godfather</li>
-			<li>Raging bull</li>
-			<li>Toy story</li>
-		</ul>
-	</div>
-</div>
-
+		<div class="row" ng-if="movieLoaded" ng-cloak>
+			<div class="col-sm-4 col-md-3">
+				<img ng-src="{{ movie.poster }}" alt="{{ movie.title }} poster image" class="img-thumbnail">
+			</div>
+			<div class="col-sm-8 col-md-6 movie-details">
+				<dl class="dl-horizontal">
+					<dt>Genre</dt>
+					<dd>{{ movie.genre }}</dd>
+					<dt>Runtime</dt>
+					<dd>{{ movie.runtime }} min</dd>
+					<dt>IMDb rating</dt>
+					<dd>{{ movie.imdb_rating }}</dd>
+					<dt>Year</dt>
+					<dd>{{ movie.year }}</dd>
+					<dt>Plot</dt>
+					<dd>{{ movie.plot }}</dd>
+				</dl>
+				<div class="video-js vjs-using-native-controls vjs-controls-enabled vjs-paused vjs-user-inactive" id="vjs_video">
+					<p ng-bind-html="movieTrailer"></p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<h5>Recommendations</h5>
+				<ul>
+					<li>The Godfather</li>
+					<li>Raging bull</li>
+					<li>Toy story</li>
+				</ul>
+			</div>
+		</div>
+	</dov>
     {% endverbatim %}
 {% endblock %}

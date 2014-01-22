@@ -86,7 +86,7 @@ class Movie(models.Model):
                 # get only digits from string (example UK:112min -> 112)
                 self.runtime = int(re.findall('\d+', runtimes[0])[0])
             self.plot = movie.get('plot outline', "")
-            poster_url = movie.get('cover url')
+            poster_url = movie.get('full-size cover url')
             if poster_url:
                 poster_data = requests.get(poster_url)
                 file_extension = os.path.splitext(poster_url)[1]

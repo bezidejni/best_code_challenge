@@ -118,7 +118,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 		Movies.getRecommendations()
 			.success(function(data) {
 				$scope.recommendedMovies = data.results;
-				$scope.recommendedMovies.push.apply(data.results);
 				$scope.slides = $scope.paginate($scope.recommendedMovies, 5);
 			});
 	}
@@ -300,8 +299,13 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	};
 
 	// set the cookie if it's not already set
-	if (angular.isUndefined($cookies.recommendationsOpen)) $scope.setCookie('recommendationsOpen', true);
-	$scope.recommendationsOpen = ($cookies.recommendationsOpen == 'open') ? true : false;
+	if (angular.isUndefined($cookies.recommendationsOpen)) {
+		$scope.setCookie('recommendationsOpen', true);
+		$scope.recommendationsOpen = 'open';
+	}
+	else {
+		$scope.recommendationsOpen = ($cookies.recommendationsOpen == 'open') ? true : false;
+	}
 
 
 	// WATCH EXPRESSIONS

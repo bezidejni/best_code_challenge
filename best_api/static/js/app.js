@@ -56,7 +56,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.recommendedMovies = [];
 
 	if(angular.isUndefined($cookies.recommendationsOpen)) $cookies.recommendationsOpen = true;
-	console.log($cookies.recommendationsOpen);
+	console.log(angular.isUndefined($cookies.recommendationsOpen),$cookies.recommendationsOpen);
 	$scope.recommendationsOpen = $cookies.recommendationsOpen;
 
 	// ordering parameters

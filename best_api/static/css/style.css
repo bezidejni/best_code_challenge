@@ -261,6 +261,12 @@ h4.movie-title a {
     margin: 100px 0;
 }
 
+footer .fa {
+    color: #1ABC9C;
+    font-size: 20px;
+    margin: 0 5px;
+}
+
 
 /* RESPONSIVE STUFF */
 @media (max-width: 767px) {

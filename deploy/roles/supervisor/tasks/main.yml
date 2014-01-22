@@ -1,0 +1,20 @@
+---
+
+- name: Copy supervisor configuration file
+  template: src=supervisor.conf.j2 dest=/opt/supervisor.conf
+
+- name: Copy supervisor init script
+  copy: src=supervisord dest=/etc/init.d/
+
+- name: Set permissions on the init script
+  file: path=/etc/init.d/supervisord mode=755
+
+- name: Run supervisord on startup
+  file: src=/etc/init.d/supervisord path=/etc/rc{{item}}.d/S90supervisor state=link
+  with_items:
+    - 3
+    - 4
+    - 5
+
+- name: Ensure supervisord is running
+  service: name=supervisord state=started

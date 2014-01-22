@@ -1,0 +1,22 @@
+---
+
+- name: Install EPEL repo
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+
+- name: Ensure Python development tools are available
+  yum: name={{item}} state=latest enablerepo=epel
+  with_items:
+    - python-devel
+    - python-setuptools
+
+- name: Install pip
+  easy_install: name=pip
+
+- name: Update python-setuptools
+  pip: name=setuptools state=latest extra_args='--no-use-wheel'
+
+- name: Install required python system packages.
+  pip: name={{item}}
+  with_items:
+    - virtualenv
+    - supervisor

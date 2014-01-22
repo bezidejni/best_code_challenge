@@ -1,0 +1,24 @@
+---
+
+- name: Clone app repo
+  sudo: True
+  git: repo=git@bitbucket.org:chojux/best-api.git dest=/opt/app
+
+- name: Clear pip build dir
+  file: path=/opt/venv/build state=absent
+
+- name: Install app requirements
+  pip: requirements='{{git_repo_dir}}/requirements.txt' virtualenv=/opt/venv extra_args="--allow-all-external"
+
+- name: Run collectstatic
+  django_manage: >
+      command=collectstatic
+      app_path={{django_project_dir}}
+      settings=best_api.settings.production
+      pythonpath={{django_project_dir}}
+      virtualenv=/opt/venv
+  environment:
+    POSTGRES_PASSWORD: "{{postgres_password}}"
+
+- name: Create media folder
+  file: path="{{django_project_dir}}/media" state=directory

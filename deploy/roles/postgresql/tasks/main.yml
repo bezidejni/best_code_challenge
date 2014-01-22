@@ -1,0 +1,32 @@
+---
+
+- name: Install PostgreSQL
+  yum: name={{item}} state=latest
+  with_items:
+    - postgresql
+    - postgresql-devel
+    - postgresql-server
+  notify:
+    - restart postgres
+
+- name: Init Postgres data
+  command: service postgresql initdb
+  ignore_errors: True
+  notify:
+    - restart postgres
+
+- name: Install pscycopg2
+  pip: name=psycopg2 state=latest
+
+- name: Ensure Postgres is running
+  service: name=postgresql state=running
+
+- name: Create Postgres user
+  sudo: True
+  sudo_user: postgres
+  postgresql_user: name={{postgres_user}} password={{postgres_password}}
+
+- name: Create DB
+  sudo: True
+  sudo_user: postgres
+  postgresql_db: name=best_api owner={{postgres_user}} encoding='UTF-8'

@@ -1,0 +1,30 @@
+[supervisord]
+nodaemon=false
+environment=POSTGRES_PASSWORD={{ postgres_password }}
+logfile = /var/log/supervisord.log
+
+[unix_http_server]
+file = /tmp/supervisor.sock
+chmod = 0777
+chown= nobody
+username = filip
+password = jukic
+
+[supervisorctl]
+serverurl = unix:///tmp/supervisor.sock
+username = filip
+password = jukic
+prompt = mysupervisor
+
+[program:nginx]
+command=/usr/sbin/nginx -c /etc/nginx/nginx.conf
+stdout_logfile=/var/log/%(program_name)s.log
+stderr_logfile=/var/log/%(program_name)s.log
+autorestart=true
+
+[program:uwsgi]
+command=/usr/bin/uwsgi --ini /opt/uwsgi.ini
+directory={{ django_project_dir }}
+stdout_logfile=/var/log/%(program_name)s.log
+stderr_logfile=/var/log/%(program_name)s.log
+autorestart=true

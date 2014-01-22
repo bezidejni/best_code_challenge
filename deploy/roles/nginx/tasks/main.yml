@@ -1,0 +1,24 @@
+---
+
+- name: Enable Nginx repo
+  copy: src=nginx.repo dest=/etc/yum.repos/
+
+- name: Ensure Nginx is at the desired version
+  yum: name=nginx state=latest
+
+- name: Ensure main Nginx configuration file is up to date
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: Ensure Nginx does not have a default configuration
+  file: path=/etc/nginx/conf.d/{{item}}.conf state=absent
+  with_items:
+    - default
+    - ssl
+    - virtual
+
+- name: Ensure nginx runs with the latest uwsgi configuration file
+  template: src=nginx_uwsgi.conf dest=/etc/nginx/conf.d/nginx_uwsgi.conf
+
+- name: Ensure Nginx is stopped
+  service: name=nginx state=stopped
+

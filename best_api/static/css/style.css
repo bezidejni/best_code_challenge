@@ -25,8 +25,19 @@ header .logo-wrapper a {
   height: 100%;
   width: 100%;
 }
-
+.palette-clouds h4 {
+    color: #34495E;
+}
 .recommendations {
+  height: 0;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.recommendations.visible {
+  padding-bottom: 20px;
 }
 .recommendations .movie {
   width: 20%;

@@ -55,9 +55,6 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.tagFilters = [];
 	$scope.recommendedMovies = [];
 
-	if (angular.isUndefined($cookies.recommendationsOpen)) $scope.setCookie('recommendationsOpen', true);
-	$scope.recommendationsOpen = ($cookies.recommendationsOpen == 'open') ? true : false;
-
 	// ordering parameters
 	$scope.predicates = [
 		{ name: 'Year', parameter: 'year,title' },
@@ -292,6 +289,8 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
         $scope.setCookie('recommendationsOpen', $scope.recommendationsOpen);
 	};
 
+	// set cookie using regular javascript because $cookies doesn't
+	// support setting a path for the cookie
 	$scope.setCookie = function(name, isOpen) {
 		var value = (isOpen) ? 'open' : 'closed';
 		var date = new Date();
@@ -299,6 +298,10 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
         var expires = "; expires="+date.toGMTString();
         window.document.cookie = name+"="+value+expires+"; path=/";
 	};
+
+	// set the cookie if it's not already set
+	if (angular.isUndefined($cookies.recommendationsOpen)) $scope.setCookie('recommendationsOpen', true);
+	$scope.recommendationsOpen = ($cookies.recommendationsOpen == 'open') ? true : false;
 
 
 	// WATCH EXPRESSIONS

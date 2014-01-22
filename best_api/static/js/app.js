@@ -55,7 +55,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.tagFilters = [];
 	$scope.recommendedMovies = [];
 
-	if (angular.isUndefined($cookies.recommendationsOpen)) $scope.setCookie('recommendationsOpen', true);
+	if (angular.isUndefined($cookies.recommendationsOpen)) $scope.cookieFactory('recommendationsOpen', true);
 	$scope.recommendationsOpen = ($cookies.recommendationsOpen == 'open') ? true : false;
 
 	// ordering parameters
@@ -294,7 +294,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 
 	// set cookie using regular javascript because $cookies doesn't
 	// support setting a path for the cookie
-	$scope.setCookie = function(name, isOpen) {
+	$scope.cookieFactory = function(name, isOpen) {
 		var value = (isOpen) ? 'open' : 'closed';
 		var date = new Date();
         date.setTime(date.getTime()+(24*60*60*1000));

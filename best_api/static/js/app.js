@@ -290,7 +290,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
 	$scope.toggleRecommendations = function() {
 		$scope.recommendationsOpen = !$scope.recommendationsOpen;
         $scope.setCookie('recommendationsOpen', $scope.recommendationsOpen);
-	}
+	};
 
 	// set cookie using regular javascript because $cookies doesn't
 	// support setting a path for the cookie
@@ -300,7 +300,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies',
         date.setTime(date.getTime()+(24*60*60*1000));
         var expires = "; expires="+date.toGMTString();
         $document.cookie = name+"="+value+expires+"; path=/";
-	}
+	};
 
 
 	// WATCH EXPRESSIONS

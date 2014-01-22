@@ -54,6 +54,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	$scope.gettingMovies = true;
 	$scope.tagFilters = [];
 	$scope.recommendationsOpen = true;
+	$scope.recommendedMovies = [];
 
 	// ordering parameters
 	$scope.predicates = [

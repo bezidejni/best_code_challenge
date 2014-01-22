@@ -270,6 +270,24 @@ footer .fa {
 
 /* RESPONSIVE STUFF */
 @media (max-width: 767px) {
+  header {
+    text-align: center;
+  }
+  header p {
+    text-align: left;
+  }
+  .palette-clouds h4 {
+    font-size: 28px;
+  }
+  .recommendations.visible {
+    max-height: 1845px;
+    padding-bottom: 20px;
+  }
+  .recommendations .movie {
+    padding-bottom: 20px;
+    text-align: center;
+    width: 100%;
+  }
   .display {
     height: 145px;
   }

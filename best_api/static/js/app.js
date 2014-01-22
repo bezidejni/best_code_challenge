@@ -53,6 +53,7 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;
 	$scope.tagFilters = [];
+	$scope.recommendationsOpen = true;
 
 	// ordering parameters
 	$scope.predicates = [
@@ -279,6 +280,11 @@ mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', f
 
 		return pages;
 	};
+
+	// toggle recommendations function
+	$scope.toggleRecommendations = function() {
+		$scope.recommendationsOpen = !$scope.recommendationsOpen;
+	}
 
 
 	// WATCH EXPRESSIONS

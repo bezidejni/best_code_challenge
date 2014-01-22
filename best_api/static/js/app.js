@@ -1,5 +1,5 @@
 
-var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize']);
+var mevies = angular.module('mevies', ['ui.bootstrap', 'ngSanitize', 'ngCookies']);
 
 // app configuration
 mevies.config(function($provide, $windowProvider, $httpProvider) {
@@ -47,13 +47,15 @@ mevies.factory('Movies', ['$http', 'API_BASE_URL', function ($http, API_BASE_URL
 	};
 }]);
 
-mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', 'Movies', function ($scope, $timeout, $q, $sce, Movies) {
+mevies.controller('MeviesCtrl', ['$scope', '$timeout', '$q', '$sce', '$cookies', 'Movies', function ($scope, $timeout, $q, $sce, $cookies, Movies) {
 
 	$scope.pages = [];
 	$scope.currentPage = 1;
 	$scope.gettingMovies = true;
 	$scope.tagFilters = [];
 	$scope.recommendedMovies = [];
+
+	$cookies.tesstCookie = 'open';
 
 	// ordering parameters
 	$scope.predicates = [

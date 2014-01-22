@@ -1,7 +1,7 @@
 BeautifulSoup==3.2.1
 Django==1.6.1
 FormEncode==1.2.6
--e hg+https://bitbucket.org/alberanid/imdbpy@b750e29f6101e6ad361e727cf2fe781b81fcc036#egg=IMDbPY-dev
+hg+https://bitbucket.org/alberanid/imdbpy@b750e29f6101e6ad361e727cf2fe781b81fcc036#egg=IMDbPY-dev
 Markdown==2.3.1
 Pillow==2.3.0
 SQLAlchemy==0.9.1

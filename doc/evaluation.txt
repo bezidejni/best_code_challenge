@@ -1,0 +1,214 @@
+Experiment 1, min_rating:5, dump:1, similar_calc:5, set_percentage:80
+MAE: 1.10194492511
+Experiment 2, min_rating:5, dump:1, similar_calc:25, set_percentage:80
+MAE: 1.06416468852
+Experiment 3, min_rating:5, dump:1, similar_calc:50, set_percentage:80
+MAE: 0.997906602102
+Experiment 4, min_rating:5, dump:1, similar_calc:75, set_percentage:80
+MAE: 0.943758506137
+Experiment 5, min_rating:5, dump:10, similar_calc:5, set_percentage:80
+MAE: 0.863246096112
+Experiment 6, min_rating:5, dump:10, similar_calc:25, set_percentage:80
+MAE: 0.811362440937
+Experiment 7, min_rating:5, dump:10, similar_calc:50, set_percentage:80
+MAE: 0.784176943562
+Experiment 8, min_rating:5, dump:10, similar_calc:75, set_percentage:80
+MAE: 0.771170914833
+Experiment 9, min_rating:5, dump:30, similar_calc:5, set_percentage:80
+MAE: 0.821821036645
+Experiment 10, min_rating:5, dump:30, similar_calc:25, set_percentage:80
+MAE: 0.770126717063
+Experiment 11, min_rating:5, dump:30, similar_calc:50, set_percentage:80
+MAE: 0.753173459345
+Experiment 12, min_rating:5, dump:30, similar_calc:75, set_percentage:80
+MAE: 0.746606399945
+Experiment 13, min_rating:5, dump:50, similar_calc:5, set_percentage:80
+MAE: 0.816456184429
+Experiment 14, min_rating:5, dump:50, similar_calc:25, set_percentage:80
+MAE: 0.76222345522
+Experiment 15, min_rating:5, dump:50, similar_calc:50, set_percentage:80
+MAE: 0.747917243309
+Experiment 16, min_rating:5, dump:50, similar_calc:75, set_percentage:80
+MAE: 0.74332424616
+Experiment 17, min_rating:15, dump:1, similar_calc:5, set_percentage:80
+MAE: 1.03226876744
+Experiment 18, min_rating:15, dump:1, similar_calc:25, set_percentage:80
+MAE: 0.937425317765
+Experiment 19, min_rating:15, dump:1, similar_calc:50, set_percentage:80
+MAE: 0.874820419398
+Experiment 20, min_rating:15, dump:1, similar_calc:75, set_percentage:80
+MAE: 0.836515857314
+Experiment 21, min_rating:15, dump:10, similar_calc:5, set_percentage:80
+MAE: 0.863236606233
+Experiment 22, min_rating:15, dump:10, similar_calc:25, set_percentage:80
+MAE: 0.808613063965
+Experiment 23, min_rating:15, dump:10, similar_calc:50, set_percentage:80
+MAE: 0.782666299308
+Experiment 24, min_rating:15, dump:10, similar_calc:75, set_percentage:80
+MAE: 0.768891275485
+Experiment 25, min_rating:15, dump:30, similar_calc:5, set_percentage:80
+MAE: 0.822542475103
+Experiment 26, min_rating:15, dump:30, similar_calc:25, set_percentage:80
+MAE: 0.770652762059
+Experiment 27, min_rating:15, dump:30, similar_calc:50, set_percentage:80
+MAE: 0.753854243947
+Experiment 28, min_rating:15, dump:30, similar_calc:75, set_percentage:80
+MAE: 0.7473162363
+Experiment 29, min_rating:15, dump:50, similar_calc:5, set_percentage:80
+MAE: 0.81711025447
+Experiment 30, min_rating:15, dump:50, similar_calc:25, set_percentage:80
+MAE: 0.762750281691
+Experiment 31, min_rating:15, dump:50, similar_calc:50, set_percentage:80
+MAE: 0.748594242986
+Experiment 32, min_rating:15, dump:50, similar_calc:75, set_percentage:80
+MAE: 0.744005013634
+Experiment 33, min_rating:30, dump:1, similar_calc:5, set_percentage:80
+MAE: 0.935877176364
+Experiment 34, min_rating:30, dump:1, similar_calc:25, set_percentage:80
+MAE: 0.865114626982
+Experiment 35, min_rating:30, dump:1, similar_calc:50, set_percentage:80
+MAE: 0.814737330122
+Experiment 36, min_rating:30, dump:1, similar_calc:75, set_percentage:80
+MAE: 0.790434066059
+Experiment 37, min_rating:30, dump:10, similar_calc:5, set_percentage:80
+MAE: 0.855109021714
+Experiment 38, min_rating:30, dump:10, similar_calc:25, set_percentage:80
+MAE: 0.798472038528
+Experiment 39, min_rating:30, dump:10, similar_calc:50, set_percentage:80
+MAE: 0.774526725741
+Experiment 40, min_rating:30, dump:10, similar_calc:75, set_percentage:80
+MAE: 0.763624906888
+Experiment 41, min_rating:30, dump:30, similar_calc:5, set_percentage:80
+MAE: 0.824147618176
+Experiment 42, min_rating:30, dump:30, similar_calc:25, set_percentage:80
+MAE: 0.772813564914
+Experiment 43, min_rating:30, dump:30, similar_calc:50, set_percentage:80
+MAE: 0.75583908438
+Experiment 44, min_rating:30, dump:30, similar_calc:75, set_percentage:80
+MAE: 0.749498006488
+Experiment 45, min_rating:30, dump:50, similar_calc:5, set_percentage:80
+MAE: 0.818452193269
+Experiment 46, min_rating:30, dump:50, similar_calc:25, set_percentage:80
+MAE: 0.765023403297
+Experiment 47, min_rating:30, dump:50, similar_calc:50, set_percentage:80
+MAE: 0.750746805312
+Experiment 48, min_rating:30, dump:50, similar_calc:75, set_percentage:80
+MAE: 0.746385373853
+Experiment 49, min_rating:50, dump:1, similar_calc:5, set_percentage:80
+MAE: 0.889685271137
+Experiment 50, min_rating:50, dump:1, similar_calc:25, set_percentage:80
+MAE: 0.819110342239
+Experiment 51, min_rating:50, dump:1, similar_calc:50, set_percentage:80
+MAE: 0.784593060846
+Experiment 52, min_rating:50, dump:1, similar_calc:75, set_percentage:80
+MAE: 0.770434362236
+Experiment 53, min_rating:50, dump:10, similar_calc:5, set_percentage:80
+MAE: 0.852152474669
+Experiment 54, min_rating:50, dump:10, similar_calc:25, set_percentage:80
+MAE: 0.794732003177
+Experiment 55, min_rating:50, dump:10, similar_calc:50, set_percentage:80
+MAE: 0.771376138775
+Experiment 56, min_rating:50, dump:10, similar_calc:75, set_percentage:80
+MAE: 0.763171442683
+Experiment 57, min_rating:50, dump:30, similar_calc:5, set_percentage:80
+MAE: 0.828435332536
+Experiment 58, min_rating:50, dump:30, similar_calc:25, set_percentage:80
+MAE: 0.777882227902
+Experiment 59, min_rating:50, dump:30, similar_calc:50, set_percentage:80
+MAE: 0.76108944962
+Experiment 60, min_rating:50, dump:30, similar_calc:75, set_percentage:80
+MAE: 0.755724135412
+Experiment 61, min_rating:50, dump:50, similar_calc:5, set_percentage:80
+MAE: 0.823475198022
+Experiment 62, min_rating:50, dump:50, similar_calc:25, set_percentage:80
+MAE: 0.770742960483
+Experiment 63, min_rating:50, dump:50, similar_calc:50, set_percentage:80
+MAE: 0.756662134885
+Experiment 64, min_rating:50, dump:50, similar_calc:75, set_percentage:80
+MAE: 0.753469421045
+Experiment 65, min_rating:5, dump:1, similar_calc:5, set_percentage:90
+MAE: 1.11220569854
+Experiment 66, min_rating:5, dump:1, similar_calc:25, set_percentage:90
+MAE: 1.05991716336
+Experiment 67, min_rating:5, dump:1, similar_calc:50, set_percentage:90
+MAE: 0.985395080687
+Experiment 68, min_rating:5, dump:1, similar_calc:75, set_percentage:90
+MAE: 0.927569640847
+Experiment 69, min_rating:5, dump:10, similar_calc:5, set_percentage:90
+MAE: 0.85802319188
+Experiment 70, min_rating:5, dump:10, similar_calc:25, set_percentage:90
+MAE: 0.802090449153
+Experiment 71, min_rating:5, dump:10, similar_calc:50, set_percentage:90
+MAE: 0.773508753709
+Experiment 72, min_rating:5, dump:10, similar_calc:75, set_percentage:90
+MAE: 0.76245319589
+Experiment 73, min_rating:5, dump:30, similar_calc:5, set_percentage:90
+MAE: 0.80665511334
+Experiment 74, min_rating:5, dump:30, similar_calc:25, set_percentage:90
+MAE: 0.759512279248
+Experiment 75, min_rating:5, dump:30, similar_calc:50, set_percentage:90
+MAE: 0.742378264412
+Experiment 76, min_rating:5, dump:30, similar_calc:75, set_percentage:90
+MAE: 0.736321965202
+Experiment 77, min_rating:5, dump:50, similar_calc:5, set_percentage:90
+MAE: 0.800330531179
+Experiment 78, min_rating:5, dump:50, similar_calc:25, set_percentage:90
+MAE: 0.750644145032
+Experiment 79, min_rating:5, dump:50, similar_calc:50, set_percentage:90
+MAE: 0.737187223592
+Experiment 80, min_rating:5, dump:50, similar_calc:75, set_percentage:90
+MAE: 0.732954201449
+Experiment 81, min_rating:15, dump:1, similar_calc:5, set_percentage:90
+MAE: 1.02718337364
+Experiment 82, min_rating:15, dump:1, similar_calc:25, set_percentage:90
+MAE: 0.92657411604
+Experiment 83, min_rating:15, dump:1, similar_calc:50, set_percentage:90
+MAE: 0.859602796178
+Experiment 84, min_rating:15, dump:1, similar_calc:75, set_percentage:90
+MAE: 0.820301081653
+Experiment 85, min_rating:15, dump:10, similar_calc:5, set_percentage:90
+MAE: 0.855437132965
+Experiment 86, min_rating:15, dump:10, similar_calc:25, set_percentage:90
+MAE: 0.798089272564
+Experiment 87, min_rating:15, dump:10, similar_calc:50, set_percentage:90
+MAE: 0.771133006091
+Experiment 88, min_rating:15, dump:10, similar_calc:75, set_percentage:90
+MAE: 0.760242990267
+Experiment 89, min_rating:15, dump:30, similar_calc:5, set_percentage:90
+MAE: 0.806889671527
+Experiment 90, min_rating:15, dump:30, similar_calc:25, set_percentage:90
+MAE: 0.759844355506
+Experiment 91, min_rating:15, dump:30, similar_calc:50, set_percentage:90
+MAE: 0.742821032335
+Experiment 92, min_rating:15, dump:30, similar_calc:75, set_percentage:90
+MAE: 0.736824241989
+Experiment 93, min_rating:15, dump:50, similar_calc:5, set_percentage:90
+MAE: 0.800544882374
+Experiment 94, min_rating:15, dump:50, similar_calc:25, set_percentage:90
+MAE: 0.750974067354
+Experiment 95, min_rating:15, dump:50, similar_calc:50, set_percentage:90
+MAE: 0.737648966132
+Experiment 96, min_rating:15, dump:50, similar_calc:75, set_percentage:90
+MAE: 0.733458064011
+Experiment 97, min_rating:30, dump:1, similar_calc:5, set_percentage:90
+MAE: 0.905118846316
+Experiment 98, min_rating:30, dump:1, similar_calc:25, set_percentage:90
+MAE: 0.845314212489
+Experiment 99, min_rating:30, dump:1, similar_calc:50, set_percentage:90
+MAE: 0.794690648245
+Experiment 100, min_rating:30, dump:1, similar_calc:75, set_percentage:90
+MAE: 0.773223370109
+Experiment 101, min_rating:30, dump:10, similar_calc:5, set_percentage:90
+MAE: 0.842985159305
+Experiment 102, min_rating:30, dump:10, similar_calc:25, set_percentage:90
+MAE: 0.786807695481
+Experiment 103, min_rating:30, dump:10, similar_calc:50, set_percentage:90
+MAE: 0.762223670518
+Experiment 104, min_rating:30, dump:10, similar_calc:75, set_percentage:90
+MAE: 0.753466887727
+Experiment 105, min_rating:30, dump:30, similar_calc:5, set_percentage:90
+MAE: 0.807813971173
+Experiment 106, min_rating:30, dump:30, similar_calc:25, set_percentage:90
+MAE: 0.760912938701
+Experiment 107, min_rating:30, dump:30, similar_calc:50, set_percentage:90
+MAE: 0.744685681805

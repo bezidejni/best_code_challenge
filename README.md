@@ -1,7 +1,5 @@
 # Mevies: Movies for me documentation
 
-**Repozitorij se nalazi ovdje: [Best-API](https://bitbucket.org/chojux/best-api/overview)**
-
 **NAPOMENA: Dupli filmovi koji se pojavljuju u web sučelju su posljedice dupliciranja u originalnoj bazi podataka**
 
 *Autori: Filip Jukić i Marko Čorokalo*
